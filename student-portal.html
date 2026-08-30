@@ -231,6 +231,112 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 }
 .solution.open{max-height:140px;opacity:1;margin-top:14px;padding:4px 0 4px 16px}
 
+/* ---------- back link ---------- */
+.backlink{
+  display:inline-flex;align-items:center;gap:6px;color:var(--muted);
+  font:800 10px var(--mono);letter-spacing:.08em;text-transform:uppercase;
+  border:0;background:none;padding:0;margin-bottom:22px;transition:color .25s var(--ease);
+}
+.backlink:hover{color:var(--gold-soft)}
+.backlink::before{content:"←"}
+
+/* ---------- chips (filters) ---------- */
+.chiprow{display:flex;gap:7px;flex-wrap:wrap;margin:16px 0 24px}
+.chip{
+  padding:9px 15px;border-radius:999px;border:1px solid var(--line-2);background:transparent;
+  color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.02em;
+  transition:all .25s var(--ease);
+}
+.chip:hover{border-color:var(--gold-dim);color:var(--gold-soft)}
+.chip.active{background:var(--gold);color:#241701;border-color:var(--gold)}
+
+/* ---------- problem lab ---------- */
+.problist{display:flex;flex-direction:column;gap:10px}
+.pcard{
+  border:1px solid var(--line);border-radius:16px;background:#ffffff05;overflow:hidden;
+  transition:border-color .3s var(--ease);
+}
+.pcard.solved{border-color:#5fd9a444}
+.phead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;cursor:pointer}
+.ptags{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.ptag{font:800 9px var(--mono);letter-spacing:.06em;color:var(--muted-2);border:1px solid var(--line-2);padding:5px 9px;border-radius:999px}
+.ptag.gold{color:var(--gold-soft);border-color:var(--gold-dim)}
+.ptitle{font-size:13.5px;font-weight:600;margin-top:8px;line-height:1.4}
+.pcheck{width:22px;height:22px;border-radius:50%;border:1px solid var(--line-2);flex:none;display:grid;place-items:center;font-size:11px;color:transparent;transition:all .3s var(--ease)}
+.pcard.solved .pcheck{background:var(--emerald);border-color:var(--emerald);color:#04241a}
+.pbody{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.pbody.open{max-height:340px}
+.pbody-inner{padding:0 20px 20px}
+.pform{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.pform input{flex:1;min-width:140px}
+.pform button{border:0;border-radius:999px;padding:12px 18px;font-weight:800;font-size:12px;background:linear-gradient(155deg,var(--gold-soft),var(--gold));color:#241701;transition:transform .2s var(--ease)}
+.pform button:hover{transform:translateY(-2px)}
+.pfeedback{margin-top:12px;font-size:12.5px;padding:11px 14px;border-radius:10px;display:none}
+.pfeedback.show{display:block}
+.pfeedback.good{background:#5fd9a414;border:1px solid #5fd9a444;color:#c4f3dd}
+.pfeedback.bad{background:#ff879214;border:1px solid #ff879244;color:#ffd3d7;animation:shake .4s var(--ease)}
+
+/* ---------- mock olympiad ---------- */
+.mockstart{text-align:left}
+.timerwrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.timer{font:700 20px var(--mono);color:var(--gold-soft)}
+.timer.low{color:var(--coral);animation:pulseGlow 1s ease-in-out infinite}
+.qcount{color:var(--muted);font-size:12px}
+.mockq h3{font:500 20px/1.4 var(--serif);margin:0 0 18px}
+.qnav{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
+.resultbig{font:600 64px var(--serif);color:var(--gold);line-height:1}
+.resultlabel{color:var(--muted);font-size:12.5px;margin-top:6px}
+.histrow{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+.histrow:last-child{border-bottom:0}
+.histrow span{color:var(--muted)}
+
+/* ---------- rankings ---------- */
+.lbtable{width:100%;border-collapse:collapse;margin-top:8px}
+.lbtable th{text-align:left;font:800 9px var(--mono);letter-spacing:.08em;color:var(--muted-2);padding:10px 12px;border-bottom:1px solid var(--line-2)}
+.lbtable td{padding:14px 12px;border-bottom:1px solid var(--line);font-size:13px}
+.lbtable tr.me td{color:var(--gold-soft);font-weight:700}
+.lbrank{font:700 14px var(--serif);color:var(--gold)}
+
+/* ---------- certificates ---------- */
+.certgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.certcard{
+  border:1px solid var(--gold-dim);border-radius:18px;padding:24px;text-align:center;
+  background:linear-gradient(180deg,#0c2143cc,#081733cc);
+  box-shadow:0 0 30px -10px #e7b84b40;transition:transform .3s var(--ease);
+}
+.certcard:hover{transform:translateY(-4px)}
+.certcard.locked{opacity:.45;box-shadow:none;border-color:var(--line)}
+.certcard .cicon{font:40px var(--serif);color:var(--gold);margin-bottom:10px}
+.certcard h3{font:600 15px var(--serif);margin:0 0 6px}
+.certcard p{font-size:11.5px;color:var(--muted);margin:0 0 14px}
+.certcard button{border:1px solid var(--gold-dim);background:transparent;color:var(--gold-soft);padding:9px 16px;border-radius:999px;font:800 10px var(--mono);letter-spacing:.06em;transition:all .25s var(--ease)}
+.certcard button:hover{background:var(--gold);color:#241701}
+
+/* ---------- certificate print overlay ---------- */
+.certoverlay{position:fixed;inset:0;z-index:100;background:#020610f2;display:none;align-items:center;justify-content:center;padding:24px}
+.certoverlay.show{display:flex}
+.certsheet{
+  width:min(720px,100%);background:#fbf6e8;color:#1c2b45;border-radius:6px;padding:56px 48px;
+  text-align:center;position:relative;font-family:var(--serif);
+  box-shadow:0 40px 90px -30px #000000a0;
+}
+.certsheet::before{content:"";position:absolute;inset:14px;border:2px solid #e7b84b;border-radius:3px;pointer-events:none}
+.certsheet .cbrand{font:800 11px var(--sans);letter-spacing:.14em;color:#0b2247}
+.certsheet h2{font:600 34px var(--serif);margin:22px 0 6px;color:#0b2247}
+.certsheet .cname{font:italic 600 30px var(--serif);color:#a5791f;margin:18px 0}
+.certsheet .cbody{font-size:14px;color:#3a4a63;max-width:44ch;margin:0 auto 22px;line-height:1.7}
+.certsheet .cmeta{display:flex;justify-content:space-between;margin-top:36px;font-size:10.5px;color:#5c6c86;letter-spacing:.06em}
+.certclose{position:absolute;top:16px;right:16px;background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer}
+.certactions{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.certactions button{padding:12px 20px;border-radius:999px;font-weight:800;font-size:12px;border:1px solid var(--line-2);background:transparent;color:var(--ink)}
+.certactions .printbtn{background:linear-gradient(155deg,var(--gold-soft),var(--gold));color:#241701;border:0}
+@media print{
+  body *{visibility:hidden}
+  .certsheet,.certsheet *{visibility:visible}
+  .certsheet{position:fixed;inset:0;width:100%;box-shadow:none;border-radius:0}
+  .certclose,.certactions{display:none}
+}
+
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted-2);font-size:11px}
 
 @media(max-width:750px){
@@ -242,6 +348,11 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted-2);font
   .dashhead{align-items:start;flex-direction:column}
   .actions .btn:not(.btn-glow):not(#logout){display:none}
   .brand .word{font-size:10.5px}
+  .certgrid{grid-template-columns:1fr}
+  .lbtable{font-size:11px}
+  .certsheet{padding:36px 22px}
+  .certsheet h2{font-size:26px}
+  .certsheet .cname{font-size:22px}
 }
 @media(max-width:450px){
   .stats{grid-template-columns:1fr}
@@ -345,29 +456,26 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted-2);font
     <span class="badge">Platform foundation</span>
   </div>
   <div class="stats">
-    <div class="stat"><small>Training progress</small><b data-count="42" data-suffix="%">0%</b></div>
-    <div class="stat"><small>Problems solved</small><b>—</b></div>
-    <div class="stat"><small>Mock tests</small><b>—</b></div>
-    <div class="stat"><small>Rank</small><b>—</b></div>
+    <div class="stat"><small>Training progress</small><b id="statProgress">0%</b></div>
+    <div class="stat"><small>Problems solved</small><b id="statSolved">0 / 0</b></div>
+    <div class="stat"><small>Mock tests</small><b id="statMocks">0</b></div>
+    <div class="stat"><small>Rank</small><b id="statRank">—</b></div>
   </div>
   <div class="dashgrid">
     <div class="card">
       <h3>Olympiad readiness</h3>
-      <p class="muted">Sample progress until real activity is connected.</p>
-      <div class="bar"><i id="dashbar" style="width:42%"></i></div>
-      <div class="row"><b>Number Theory</b><span>Foundation</span></div>
-      <div class="row"><b>Algebra</b><span>Foundation</span></div>
-      <div class="row"><b>Geometry</b><span>Foundation</span></div>
-      <div class="row"><b>Combinatorics</b><span>Foundation</span></div>
+      <p class="muted">Based on problems solved and mock test scores.</p>
+      <div class="bar"><i id="dashbar" style="width:0%"></i></div>
+      <div id="topicRows"></div>
     </div>
     <div class="card">
       <h3>Quick access</h3>
       <div class="quick">
-        <button class="qbtn" onclick="coming('Problem Lab')">Problem lab</button>
-        <button class="qbtn" onclick="coming('Mock Olympiad')">Mock test</button>
+        <button class="qbtn" onclick="view('lab')">Problem lab</button>
+        <button class="qbtn" onclick="view('mock')">Mock test</button>
         <button class="qbtn" onclick="coming('Resources')">Resources</button>
-        <button class="qbtn" onclick="coming('Rankings')">Rankings</button>
-        <button class="qbtn" onclick="coming('Certificates')">Certificates</button>
+        <button class="qbtn" onclick="view('rankings')">Rankings</button>
+        <button class="qbtn" onclick="view('certificates')">Certificates</button>
       </div>
       <div class="problem">
         <div class="eyebrow">Problem preview · Intermediate</div>
@@ -379,20 +487,179 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted-2);font
   </div>
   <div class="card" style="margin-top:14px">
     <h3>What we build next</h3>
-    <p class="muted">Real student records → lessons → problem submissions → timed Olympiads → automatic scoring → rankings → certificates → coach and admin controls.</p>
+    <p class="muted">Coach and admin controls, lesson library, and cloud sync are still ahead. Problem Lab, Mock Olympiads, progress tracking, rankings and certificates are live below.</p>
   </div>
+</div></section>
+
+<section id="lab" class="view"><div class="wrap">
+  <button class="backlink" onclick="view('dash')">Dashboard</button>
+  <div class="eyebrow">Problem lab</div>
+  <h1 class="dashhead" style="display:block;margin:10px 0 0">Guided practice</h1>
+  <p class="muted" style="margin-top:6px">Answer each problem to earn points and unlock certificates. Answers are checked automatically.</p>
+  <div class="chiprow" id="topicChips"></div>
+  <div class="chiprow" id="diffChips"></div>
+  <div class="problist" id="problist"></div>
+</div></section>
+
+<section id="mock" class="view"><div class="wrap">
+  <button class="backlink" onclick="view('dash')">Dashboard</button>
+  <div id="mockStartScreen">
+    <div class="eyebrow">Mock olympiad</div>
+    <h1 class="dashhead" style="display:block;margin:10px 0 0">Timed simulation</h1>
+    <p class="muted" style="margin-top:6px;max-width:56ch">8 questions drawn from across all topics and difficulty levels, 12 minutes on the clock. Your score, time and topic breakdown are saved to your history.</p>
+    <div class="panel" style="margin-top:24px;max-width:520px">
+      <h2>Ready when you are</h2>
+      <p class="muted">Once started, the timer runs continuously — there's no pause.</p>
+      <button class="submit" onclick="startMock()"><span class="label">Start mock test</span></button>
+    </div>
+    <div class="card" style="margin-top:20px">
+      <h3>Your history</h3>
+      <div id="mockHistory"><p class="muted">No mock tests taken yet.</p></div>
+    </div>
+  </div>
+  <div id="mockTestScreen" style="display:none">
+    <div class="timerwrap">
+      <span class="qcount" id="mockQcount">Question 1 of 8</span>
+      <span class="timer" id="mockTimer">12:00</span>
+    </div>
+    <div class="panel mockq">
+      <div class="chiprow" id="mockTags" style="margin:0 0 16px"></div>
+      <h3 id="mockQuestion"></h3>
+      <div class="field full"><label>Your answer</label><input id="mockAnswer" autocomplete="off"></div>
+      <div class="qnav">
+        <button class="reveal-btn" onclick="skipMockQuestion()">Skip</button>
+        <button class="submit" style="width:auto;margin-top:0" onclick="nextMockQuestion()"><span class="label" id="mockNextLabel">Next question</span></button>
+      </div>
+    </div>
+  </div>
+  <div id="mockResultScreen" style="display:none">
+    <div class="eyebrow">Mock olympiad · Results</div>
+    <div class="panel" style="margin-top:16px">
+      <div class="resultbig" id="resultScore">0</div>
+      <div class="resultlabel" id="resultLabel">out of 8 correct</div>
+      <div id="resultTopics" style="margin-top:22px"></div>
+      <div class="qnav">
+        <button class="reveal-btn" onclick="view('dash')">Back to dashboard</button>
+        <button class="submit" style="width:auto;margin-top:0" onclick="view('certificates')"><span class="label">View certificates</span></button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="rankings" class="view"><div class="wrap">
+  <button class="backlink" onclick="view('dash')">Dashboard</button>
+  <div class="eyebrow">Rankings</div>
+  <h1 class="dashhead" style="display:block;margin:10px 0 0">Academy leaderboard</h1>
+  <p class="muted" style="margin-top:6px;max-width:56ch">Ranked by points earned across the Problem Lab and Mock Olympiads. This leaderboard only includes accounts registered on this device.</p>
+  <div class="panel" style="margin-top:20px">
+    <table class="lbtable">
+      <thead><tr><th>Rank</th><th>Student</th><th>Division</th><th>Points</th></tr></thead>
+      <tbody id="lbBody"></tbody>
+    </table>
+  </div>
+</div></section>
+
+<section id="certificates" class="view"><div class="wrap">
+  <button class="backlink" onclick="view('dash')">Dashboard</button>
+  <div class="eyebrow">Certificates</div>
+  <h1 class="dashhead" style="display:block;margin:10px 0 0">Recognize every milestone</h1>
+  <p class="muted" style="margin-top:6px;max-width:56ch">Certificates unlock automatically as you complete problems and mock tests. Each one can be viewed and printed.</p>
+  <div class="certgrid" id="certGrid" style="margin-top:24px"></div>
 </div></section>
 
 </main>
 <footer><div class="wrap">Mind Masters Liberia Olympiad Academy — an initiative of Mind Masters Liberia Initiative — Unleashing the Genius Within</div></footer>
+
+<div class="certoverlay" id="certOverlay">
+  <div class="certsheet" id="certSheet">
+    <button class="certclose" onclick="closeCert()">×</button>
+    <div class="cbrand">MIND MASTERS LIBERIA OLYMPIAD ACADEMY</div>
+    <h2>Certificate of Achievement</h2>
+    <p style="color:#5c6c86;font-family:var(--sans);font-size:12px;letter-spacing:.04em">This certifies that</p>
+    <div class="cname" id="certName">Student Name</div>
+    <p class="cbody" id="certBody">has demonstrated mastery in Olympiad mathematics.</p>
+    <div class="cmeta">
+      <span id="certDate">Date</span>
+      <span id="certId">Academy ID</span>
+    </div>
+    <div class="certactions">
+      <button onclick="closeCert()">Close</button>
+      <button class="printbtn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>
+</div>
 <script>
 const $=x=>document.getElementById(x);
+
+/* ============ PROBLEM BANK ============ */
+const DIFF_POINTS={Foundation:5,Intermediate:10,Advanced:15};
+const PROBLEMS=[
+ {id:'nt1',topic:'Number Theory',diff:'Foundation',q:'What is the remainder when 2^10 is divided by 7?',a:'2',sol:'2^10 = 1024 = 7·146 + 2, so the remainder is 2.'},
+ {id:'nt2',topic:'Number Theory',diff:'Foundation',q:'Find the smallest positive integer that leaves remainder 1 when divided by both 4 and 5.',a:'21',sol:'lcm(4,5) = 20, so the smallest such integer is 20 + 1 = 21.'},
+ {id:'nt3',topic:'Number Theory',diff:'Intermediate',q:'For any positive integer n, what is the remainder when n³ − n is divided by 6?',a:'0',sol:'n³ − n = (n−1)n(n+1), the product of three consecutive integers, which is always divisible by 6. Remainder 0.'},
+ {id:'nt4',topic:'Number Theory',diff:'Intermediate',q:'Find the sum of all positive divisors of 60.',a:'168',sol:'60 = 2²·3·5, so the divisor sum is (1+2+4)(1+3)(1+5) = 7·4·6 = 168.'},
+ {id:'nt5',topic:'Number Theory',diff:'Advanced',q:'How many positive integers less than 100 are divisible by neither 2 nor 3?',a:'33',sol:'By inclusion–exclusion: 99 − 49 (div by 2) − 33 (div by 3) + 16 (div by 6) = 33.'},
+ {id:'nt6',topic:'Number Theory',diff:'Advanced',q:'What is the last digit of 7^2023?',a:'3',sol:'Powers of 7 cycle 7,9,3,1 with period 4. 2023 mod 4 = 3, so the last digit matches the 3rd term: 3.'},
+ {id:'al1',topic:'Algebra',diff:'Foundation',q:'If x + y = 10 and xy = 21, find x² + y².',a:'58',sol:'x² + y² = (x+y)² − 2xy = 100 − 42 = 58.'},
+ {id:'al2',topic:'Algebra',diff:'Foundation',q:'Solve for x: 3x − 7 = 2x + 5.',a:'12',sol:'3x − 2x = 5 + 7, so x = 12.'},
+ {id:'al3',topic:'Algebra',diff:'Intermediate',q:'If a and b are the roots of x² − 5x + 6 = 0, find a³ + b³.',a:'35',sol:'a+b=5, ab=6. a³+b³ = (a+b)³ − 3ab(a+b) = 125 − 90 = 35.'},
+ {id:'al4',topic:'Algebra',diff:'Intermediate',q:'Find the sum of all real solutions to x² − 6x + 8 = 0.',a:'6',sol:'By Vieta\u2019s formulas, the sum of the roots is 6.'},
+ {id:'al5',topic:'Algebra',diff:'Advanced',q:'If x + 1/x = 3, find x³ + 1/x³.',a:'18',sol:'x³+1/x³ = (x+1/x)³ − 3(x+1/x) = 27 − 9 = 18.'},
+ {id:'al6',topic:'Algebra',diff:'Advanced',q:'Positive integers x and y satisfy x² − y² = 45 with x > y. Find the largest possible value of x.',a:'23',sol:'Factor as (x−y)(x+y)=45. Trying factor pairs (1,45),(3,15),(5,9) gives x = 23, 9, 7. The largest is 23.'},
+ {id:'ge1',topic:'Geometry',diff:'Foundation',q:'A right triangle has legs 6 and 8. Find its hypotenuse.',a:'10',sol:'By the Pythagorean theorem, √(6²+8²) = √100 = 10.'},
+ {id:'ge2',topic:'Geometry',diff:'Foundation',q:'Find the area of a triangle with base 12 and height 7.',a:'42',sol:'Area = ½ · base · height = ½ · 12 · 7 = 42.'},
+ {id:'ge3',topic:'Geometry',diff:'Intermediate',q:'The angles of a triangle are in ratio 2:3:4. Find the largest angle in degrees.',a:'80',sol:'The parts sum to 9, each part = 180/9 = 20. Largest angle = 4·20 = 80°.'},
+ {id:'ge4',topic:'Geometry',diff:'Intermediate',q:'A circle has circumference 31.4 cm (use π ≈ 3.14). Find its radius in cm.',a:'5',sol:'r = C/(2π) = 31.4/6.28 = 5 cm.'},
+ {id:'ge5',topic:'Geometry',diff:'Advanced',q:'Triangle ABC has a right angle at A, with AB = 9 and AC = 12. Find the length of the median from A to BC.',a:'7.5',sol:'BC = 15 (3-4-5 triangle ×3). The median to the hypotenuse equals half the hypotenuse: 7.5.'},
+ {id:'ge6',topic:'Geometry',diff:'Advanced',q:'A square is inscribed in a circle of radius 5. Find the area of the square.',a:'50',sol:'The diagonal of the square equals the diameter, 10. Area = diagonal²/2 = 100/2 = 50.'},
+ {id:'cb1',topic:'Combinatorics',diff:'Foundation',q:'In how many ways can 4 students be arranged in a row?',a:'24',sol:'4! = 24.'},
+ {id:'cb2',topic:'Combinatorics',diff:'Foundation',q:'A committee of 3 is chosen from 6 people. How many committees are possible?',a:'20',sol:'C(6,3) = 20.'},
+ {id:'cb3',topic:'Combinatorics',diff:'Intermediate',q:'In how many ways can the letters of the word MATHS be arranged?',a:'120',sol:'All 5 letters are distinct, so 5! = 120.'},
+ {id:'cb4',topic:'Combinatorics',diff:'Intermediate',q:'5 distinct books are arranged on a shelf. In how many ways can this be done if two specific books must sit next to each other?',a:'48',sol:'Treat the pair as one unit: 4! arrangements × 2 orders within the pair = 48.'},
+ {id:'cb5',topic:'Combinatorics',diff:'Advanced',q:'In how many ways can 6 people be seated around a circular table?',a:'120',sol:'Circular arrangements of n objects: (n−1)! = 5! = 120.'},
+ {id:'cb6',topic:'Combinatorics',diff:'Advanced',q:'A bag has 5 red and 3 blue balls. In how many ways can you choose 4 balls so that at least 2 are red?',a:'65',sol:'Total C(8,4)=70. Subtract fewer-than-2-red cases: 0 red is impossible, 1 red = C(5,1)·C(3,3)=5. 70−5=65.'}
+];
+const TOPICS=[...new Set(PROBLEMS.map(p=>p.topic))];
+const DIFFS=['Foundation','Intermediate','Advanced'];
+const TOTAL_POINTS=PROBLEMS.reduce((s,p)=>s+DIFF_POINTS[p.diff],0);
+
+/* ============ CERTIFICATES ============ */
+const CERTS=[
+ {key:'foundation',title:'Foundation Certificate',body:'has completed every Foundation-level problem in the MMLI Problem Lab.',
+   test:d=>DIFFS[0]&&PROBLEMS.filter(p=>p.diff==='Foundation').every(p=>d.solved[p.id])},
+ {key:'intermediate',title:'Intermediate Certificate',body:'has completed every Intermediate-level problem in the MMLI Problem Lab.',
+   test:d=>PROBLEMS.filter(p=>p.diff==='Intermediate').every(p=>d.solved[p.id])},
+ {key:'advanced',title:'Advanced Problem Solver',body:'has completed every problem in the MMLI Problem Lab.',
+   test:d=>PROBLEMS.every(p=>d.solved[p.id])},
+ {key:'mockace',title:'Mock Olympiad Achiever',body:'scored 80% or higher on a full MMLI Mock Olympiad.',
+   test:d=>(d.mocks||[]).some(m=>m.score/m.total>=0.8)}
+];
+
+/* ============ DATA HELPERS ============ */
+function dataKey(u){return 'mmli_data_'+(u&&u.id?u.id:'')}
+function loadData(u){
+  try{return JSON.parse(localStorage.getItem(dataKey(u)))||{solved:{},mocks:[]}}
+  catch(e){return {solved:{},mocks:[]}}
+}
+function saveData(u,d){localStorage.setItem(dataKey(u),JSON.stringify(d))}
+function currentUser(){try{return JSON.parse(localStorage.getItem('mmli_user'))}catch(e){return null}}
+function normAns(v){return String(v).trim().toLowerCase().replace(/\s+/g,'')}
+function pointsFor(d){
+  let pts=0;
+  Object.keys(d.solved||{}).forEach(id=>{const p=PROBLEMS.find(x=>x.id===id);if(p)pts+=DIFF_POINTS[p.diff]});
+  (d.mocks||[]).forEach(m=>pts+=m.score*8);
+  return pts;
+}
 
 function view(x){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   $(x).classList.add('active');
   scrollTo({top:0,behavior:'smooth'});
-  if(x==='dash')animateDash();
+  if(x==='dash')refreshDash();
+  if(x==='lab')renderLab();
+  if(x==='rankings')renderRankings();
+  if(x==='certificates')renderCertificates();
+  if(x==='mock')renderMockStart();
 }
 
 function msg(el,t,bad=false){
@@ -403,24 +670,222 @@ function msg(el,t,bad=false){
   if(bad)el.classList.add('bad');
 }
 
-function coming(x){alert(x+' is prepared as the next module. The dashboard is ready for the real database/test engine.')}
+function coming(x){alert(x+' is prepared as the next module.')}
 
 function submitting(btn,on){btn.classList.toggle('loading',on)}
 
-function animateDash(){
-  document.querySelectorAll('.stat b[data-count]').forEach(el=>{
-    const target=parseInt(el.dataset.count,10),suffix=el.dataset.suffix||'';
-    let cur=0;
-    const step=()=>{cur+=Math.max(1,Math.round(target/24));if(cur>=target){cur=target;el.textContent=cur+suffix;return}
-      el.textContent=cur+suffix;requestAnimationFrame(step)};
-    el.textContent='0'+suffix;
-    requestAnimationFrame(step);
-  });
-  const bar=$('dashbar');
-  const w=bar.style.width;bar.style.width='0';
-  requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width=w));
+/* ============ DASHBOARD ============ */
+function refreshDash(){
+  const u=currentUser();if(!u)return;
+  const d=loadData(u);
+  const solvedCount=Object.keys(d.solved||{}).length;
+  const pct=Math.round((pointsFor(d)/TOTAL_POINTS)*100);
+  animateNumber($('statProgress'),pct,'%');
+  $('statSolved').textContent=solvedCount+' / '+PROBLEMS.length;
+  $('statMocks').textContent=(d.mocks||[]).length;
+  const board=leaderboard();
+  const idx=board.findIndex(r=>r.id===u.id);
+  $('statRank').textContent=idx>=0?('#'+(idx+1)+' of '+board.length):'—';
+  const bar=$('dashbar');bar.style.width='0';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width=Math.min(pct,100)+'%'));
+  const rows=TOPICS.map(t=>{
+    const probs=PROBLEMS.filter(p=>p.topic===t);
+    const solved=probs.filter(p=>d.solved[p.id]).length;
+    const frac=solved/probs.length;
+    const label=frac===1?'Mastered':frac>=0.5?'Developing':solved>0?'Started':'Foundation';
+    return `<div class="row"><b>${t}</b><span>${solved}/${probs.length} · ${label}</span></div>`;
+  }).join('');
+  $('topicRows').innerHTML=rows;
+}
+function animateNumber(el,target,suffix){
+  let cur=0;
+  const step=()=>{cur+=Math.max(1,Math.round(target/24));if(cur>=target){el.textContent=target+suffix;return}
+    el.textContent=cur+suffix;requestAnimationFrame(step)};
+  el.textContent='0'+suffix;requestAnimationFrame(step);
 }
 
+/* ============ PROBLEM LAB ============ */
+let labTopic='All',labDiff='All';
+function renderLab(){
+  const u=currentUser();if(!u)return;
+  const d=loadData(u);
+  $('topicChips').innerHTML=['All',...TOPICS].map(t=>
+    `<button class="chip ${t===labTopic?'active':''}" onclick="labTopic='${t}';renderLab()">${t}</button>`).join('');
+  $('diffChips').innerHTML=['All',...DIFFS].map(diff=>
+    `<button class="chip ${diff===labDiff?'active':''}" onclick="labDiff='${diff}';renderLab()">${diff}</button>`).join('');
+  const list=PROBLEMS.filter(p=>(labTopic==='All'||p.topic===labTopic)&&(labDiff==='All'||p.diff===labDiff));
+  $('problist').innerHTML=list.map(p=>{
+    const solved=!!d.solved[p.id];
+    return `<div class="pcard ${solved?'solved':''}" id="card-${p.id}">
+      <div class="phead" onclick="toggleProblem('${p.id}')">
+        <div>
+          <div class="ptags"><span class="ptag gold">${p.topic}</span><span class="ptag">${p.diff}</span><span class="ptag">${DIFF_POINTS[p.diff]} pts</span></div>
+          <div class="ptitle">${p.q}</div>
+        </div>
+        <div class="pcheck">✓</div>
+      </div>
+      <div class="pbody" id="body-${p.id}">
+        <div class="pbody-inner">
+          <div class="pform">
+            <input id="ans-${p.id}" placeholder="Your answer" ${solved?'disabled':''} onkeydown="if(event.key==='Enter')checkProblem('${p.id}')">
+            <button onclick="checkProblem('${p.id}')" ${solved?'disabled':''}>${solved?'Solved':'Check answer'}</button>
+          </div>
+          <div class="pfeedback" id="fb-${p.id}"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('')||'<p class="muted">No problems match these filters.</p>';
+}
+function toggleProblem(id){
+  document.querySelectorAll('.pbody.open').forEach(b=>{if(b.id!=='body-'+id)b.classList.remove('open')});
+  $('body-'+id).classList.toggle('open');
+}
+function checkProblem(id){
+  const u=currentUser();if(!u)return;
+  const p=PROBLEMS.find(x=>x.id===id);
+  const val=$('ans-'+id).value;
+  const fb=$('fb-'+id);
+  fb.classList.remove('show','good','bad');
+  if(!val.trim())return;
+  const correct=normAns(val)===normAns(p.a);
+  if(correct){
+    const d=loadData(u);
+    d.solved[id]=true;
+    saveData(u,d);
+    fb.textContent='Correct! '+p.sol;
+    fb.classList.add('show','good');
+    $('card-'+id).classList.add('solved');
+    $('ans-'+id).disabled=true;
+    document.querySelector('#card-'+id+' .pform button').textContent='Solved';
+    document.querySelector('#card-'+id+' .pform button').disabled=true;
+    checkNewCertificates(u);
+  }else{
+    fb.textContent='Not quite — try again.';
+    fb.classList.add('show','bad');
+  }
+}
+
+/* ============ MOCK OLYMPIAD ============ */
+let mockState=null;
+function renderMockStart(){
+  $('mockStartScreen').style.display='block';
+  $('mockTestScreen').style.display='none';
+  $('mockResultScreen').style.display='none';
+  const u=currentUser();if(!u)return;
+  const d=loadData(u);
+  const hist=(d.mocks||[]).slice().reverse();
+  $('mockHistory').innerHTML=hist.length?hist.map(m=>
+    `<div class="histrow"><b>${m.score}/${m.total} correct</b><span>${new Date(m.date).toLocaleDateString()} · ${Math.round(m.score/m.total*100)}%</span></div>`
+  ).join(''):'<p class="muted">No mock tests taken yet.</p>';
+}
+function shuffle(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startMock(){
+  const qs=shuffle(PROBLEMS).slice(0,8);
+  mockState={qs,idx:0,answers:[],secondsLeft:720,timerId:null};
+  $('mockStartScreen').style.display='none';
+  $('mockTestScreen').style.display='block';
+  renderMockQuestion();
+  mockState.timerId=setInterval(mockTick,1000);
+}
+function mockTick(){
+  mockState.secondsLeft--;
+  const t=$('mockTimer');
+  const m=Math.floor(mockState.secondsLeft/60),s=mockState.secondsLeft%60;
+  t.textContent=m+':'+String(s).padStart(2,'0');
+  t.classList.toggle('low',mockState.secondsLeft<=60);
+  if(mockState.secondsLeft<=0){clearInterval(mockState.timerId);finishMock()}
+}
+function renderMockQuestion(){
+  const {qs,idx}=mockState;
+  const p=qs[idx];
+  $('mockQcount').textContent='Question '+(idx+1)+' of '+qs.length;
+  $('mockTags').innerHTML=`<span class="ptag gold">${p.topic}</span><span class="ptag">${p.diff}</span>`;
+  $('mockQuestion').textContent=p.q;
+  $('mockAnswer').value='';
+  $('mockNextLabel').textContent=idx===qs.length-1?'Submit test':'Next question';
+  setTimeout(()=>$('mockAnswer').focus(),50);
+}
+function skipMockQuestion(){$('mockAnswer').value='';nextMockQuestion()}
+function nextMockQuestion(){
+  const {qs,idx}=mockState;
+  mockState.answers[idx]=$('mockAnswer').value;
+  if(idx<qs.length-1){mockState.idx++;renderMockQuestion()}
+  else{clearInterval(mockState.timerId);finishMock()}
+}
+function finishMock(){
+  const u=currentUser();if(!u)return;
+  const {qs,answers}=mockState;
+  let score=0;
+  const topicTally={};
+  qs.forEach((p,i)=>{
+    const correct=normAns(answers[i]||'')===normAns(p.a);
+    if(correct)score++;
+    topicTally[p.topic]=topicTally[p.topic]||{correct:0,total:0};
+    topicTally[p.topic].total++;
+    if(correct)topicTally[p.topic].correct++;
+  });
+  const d=loadData(u);
+  d.mocks=d.mocks||[];
+  d.mocks.push({date:Date.now(),score,total:qs.length,topics:topicTally});
+  saveData(u,d);
+  $('mockTestScreen').style.display='none';
+  $('mockResultScreen').style.display='block';
+  $('resultScore').textContent=score;
+  $('resultLabel').textContent='out of '+qs.length+' correct · '+Math.round(score/qs.length*100)+'%';
+  $('resultTopics').innerHTML=Object.entries(topicTally).map(([t,v])=>
+    `<div class="row"><b>${t}</b><span>${v.correct}/${v.total}</span></div>`).join('');
+  checkNewCertificates(u);
+}
+
+/* ============ RANKINGS ============ */
+function leaderboard(){
+  const users=JSON.parse(localStorage.getItem('mmli_users')||'[]');
+  return users.map(u=>({...u,points:pointsFor(loadData(u))})).sort((a,b)=>b.points-a.points);
+}
+function renderRankings(){
+  const u=currentUser();
+  const board=leaderboard();
+  $('lbBody').innerHTML=board.length?board.map((r,i)=>
+    `<tr class="${u&&r.id===u.id?'me':''}"><td class="lbrank">#${i+1}</td><td>${r.name||'Student'}${u&&r.id===u.id?' (you)':''}</td><td>${r.division||'—'}</td><td>${r.points}</td></tr>`
+  ).join(''):'<tr><td colspan="4" class="muted">No ranked students yet.</td></tr>';
+}
+
+/* ============ CERTIFICATES ============ */
+function checkNewCertificates(u){
+  const d=loadData(u);
+  d.certs=d.certs||[];
+  CERTS.forEach(c=>{
+    if(!d.certs.includes(c.key)&&c.test(d))d.certs.push(c.key);
+  });
+  saveData(u,d);
+}
+function renderCertificates(){
+  const u=currentUser();if(!u)return;
+  const d=loadData(u);
+  checkNewCertificates(u);
+  const earned=loadData(u).certs||[];
+  $('certGrid').innerHTML=CERTS.map(c=>{
+    const has=earned.includes(c.key);
+    return `<div class="certcard ${has?'':'locked'}">
+      <div class="cicon">${has?'🏅':'🔒'}</div>
+      <h3>${c.title}</h3>
+      <p>${has?c.body:'Not yet earned.'}</p>
+      <button ${has?'':'disabled'} onclick="openCert('${c.key}')">${has?'View certificate':'Locked'}</button>
+    </div>`;
+  }).join('');
+}
+function openCert(key){
+  const u=currentUser();if(!u)return;
+  const c=CERTS.find(x=>x.key===key);
+  $('certName').textContent=u.name||'Student';
+  $('certBody').textContent='This certifies that the above named student '+c.body;
+  $('certDate').textContent=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  $('certId').textContent=u.id||'MMLI Academy';
+  $('certOverlay').classList.add('show');
+}
+function closeCert(){$('certOverlay').classList.remove('show')}
+
+/* ============ AUTH / NAV ============ */
 $('join').onclick=()=>view('home');
 $('login').onclick=()=>view('loginView');
 $('logout').onclick=()=>{

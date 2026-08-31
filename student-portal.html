@@ -197,7 +197,7 @@ button{cursor:pointer}
             <div><label class="flabel">Grade</label><input class="input" style="width:100%" id="rGrade" placeholder="e.g. Grade 10"></div>
           </div>
           <div class="tworow" style="margin-top:12px">
-            <div><label class="flabel">Division</label><select class="select" style="width:100%" id="rDivision"><option>Junior Division</option><option>Senior Division</option></select></div>
+            <div><label class="flabel">Division</label><select class="select" style="width:100%" id="rDivision"><option>Junior Division</option><option>Senior Division</option><option>Elite Division</option></select></div>
             <div><label class="flabel">Role</label><select class="select" style="width:100%" id="rRole"><option>Student</option><option>Parent</option><option>Coach</option></select></div>
           </div>
           <button class="btn gold btn-glow" style="width:100%;margin-top:18px" type="submit">Create account →</button>
@@ -252,7 +252,7 @@ button{cursor:pointer}
 
 <section id="library" class="view"><div class="hero"><div class="eyebrow">Academy curriculum</div><h1>Lesson Library.</h1><p>Build theory, technique and proof-writing skill systematically.</p></div><div id="lessonList" class="lesson-grid" style="margin-top:18px"></div></section>
 
-<section id="contests" class="view"><div class="card"><div class="eyebrow">Competition center</div><h1>Mock Olympiads</h1><p style="color:var(--muted)">Timed rounds designed to simulate real mathematical competitions.</p></div><div class="problem-grid" style="margin-top:18px"><div class="problem"><span class="tag">SENIOR</span><span class="difficulty">★★★★</span><h3>Mock Olympiad #04</h3><p>4 sections · 20 questions · 2 hours</p><button class="btn" onclick="startContest(20,['Intermediate','Olympiad'])">Start mock →</button></div><div class="problem"><span class="tag">JUNIOR</span><span class="difficulty">★★★</span><h3>Junior Challenge #08</h3><p>3 sections · 15 questions · 90 minutes</p><button class="btn light" onclick="startContest(15,['Foundation','Intermediate'])">Start challenge →</button></div><div class="problem"><span class="tag">TRAINING</span><span class="difficulty">★★</span><h3>Speed Round</h3><p>10 questions · 20 minutes</p><button class="btn light" onclick="startContest(10)">Practice</button></div></div></section>
+<section id="contests" class="view"><div class="card"><div class="eyebrow">Competition center</div><h1>Mock Olympiads</h1><p style="color:var(--muted)">Timed rounds designed to simulate real mathematical competitions.</p></div><div class="problem-grid" style="margin-top:18px"><div class="problem"><span class="tag">ELITE</span><span class="difficulty">★★★★★</span><h3>Elite Championship #01</h3><p>5 sections · 25 questions · 2.5 hours · Olympiad-tier only</p><button class="btn gold" onclick="startContest(25,['Olympiad'],'Elite Championship')">Start elite round →</button></div><div class="problem"><span class="tag">SENIOR</span><span class="difficulty">★★★★</span><h3>Mock Olympiad #04</h3><p>4 sections · 20 questions · 2 hours</p><button class="btn" onclick="startContest(20,['Intermediate','Olympiad'],'Mock Olympiad')">Start mock →</button></div><div class="problem"><span class="tag">JUNIOR</span><span class="difficulty">★★★</span><h3>Junior Challenge #08</h3><p>3 sections · 15 questions · 90 minutes</p><button class="btn light" onclick="startContest(15,['Foundation','Intermediate'],'Junior Challenge')">Start challenge →</button></div><div class="problem"><span class="tag">TRAINING</span><span class="difficulty">★★</span><h3>Speed Round</h3><p>10 questions · 20 minutes</p><button class="btn light" onclick="startContest(10,null,'Speed Round')">Practice</button></div></div></section>
 
 <section id="contestView" class="view"><div class="contest"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="eyebrow">MMLI MOCK OLYMPIAD</div><h2 id="contestTitle">Mock Olympiad #04</h2></div><strong id="timer" style="font-size:22px;color:var(--red)">01:59:59</strong></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div id="questionArea"></div><div style="display:flex;justify-content:space-between;margin-top:20px"><button class="btn light" onclick="prevQ()">← Previous</button><button class="btn" onclick="nextQ()">Next →</button></div></div><div class="card"><h3>Questions</h3><div id="qnav" class="qnav"></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><p style="font-size:12px;color:var(--muted)">✓ Answered &nbsp; ⚑ Review</p><button class="btn danger" style="width:100%" onclick="submitContest()">Submit contest</button></div></div></section>
 
@@ -264,7 +264,7 @@ button{cursor:pointer}
 
 <section id="profile" class="view"><div class="card"><div class="profile"><div class="bigavatar" id="profileAvatar">S</div><div><div class="eyebrow">Student profile</div><h1 id="profileName">Student</h1><p id="profileMeta" style="color:var(--muted)"></p></div></div><hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><div class="grid"><div class="stat"><small>MMLI ID</small><b id="pid" style="font-size:18px">—</b></div><div class="stat"><small>Division</small><b id="pdiv" style="font-size:18px">—</b></div><div class="stat"><small>School</small><b id="pschool" style="font-size:18px">—</b></div><div class="stat"><small>Grade</small><b id="pgrade" style="font-size:18px">—</b></div></div><h3>Training profile</h3><div id="profileTopics"></div></div></section>
 
-<section id="coach" class="view"><div class="hero"><div class="eyebrow">Coach & Admin</div><h1>Coach Console.</h1><p>Monitor academy-wide progress, identify gaps and manage student training.</p></div><div class="grid"><div class="stat"><small>Registered students</small><b id="coachStudents">0</b></div><div class="stat"><small>Active today</small><b id="coachActive">0</b></div><div class="stat"><small>Problems solved</small><b id="coachSolved">0</b></div><div class="stat"><small>Avg. bank coverage</small><b id="coachAccuracy">0%</b></div></div><div class="card"><h2>Student performance</h2><div class="toolbar"><input class="input" id="coachSearch" placeholder="Search by name or school..." oninput="renderCoach()" style="flex:1;min-width:200px"><select class="select" id="coachDivFilter" onchange="renderCoach()"><option>All divisions</option><option>Junior Division</option><option>Senior Division</option></select></div><table class="table"><thead><tr><th>Student</th><th>School</th><th>Rating</th><th>Progress</th><th>Status</th><th></th></tr></thead><tbody id="coachTable"></tbody></table></div></section>
+<section id="coach" class="view"><div class="hero"><div class="eyebrow">Coach & Admin</div><h1>Coach Console.</h1><p>Monitor academy-wide progress, identify gaps and manage student training.</p></div><div class="grid"><div class="stat"><small>Registered students</small><b id="coachStudents">0</b></div><div class="stat"><small>Active today</small><b id="coachActive">0</b></div><div class="stat"><small>Problems solved</small><b id="coachSolved">0</b></div><div class="stat"><small>Avg. bank coverage</small><b id="coachAccuracy">0%</b></div></div><div class="card"><h2>Student performance</h2><div class="toolbar"><input class="input" id="coachSearch" placeholder="Search by name or school..." oninput="renderCoach()" style="flex:1;min-width:200px"><select class="select" id="coachDivFilter" onchange="renderCoach()"><option>All divisions</option><option>Junior Division</option><option>Senior Division</option><option>Elite Division</option></select></div><table class="table"><thead><tr><th>Student</th><th>School</th><th>Rating</th><th>Progress</th><th>Status</th><th></th></tr></thead><tbody id="coachTable"></tbody></table></div></section>
 
 </main></div>
 </div>
@@ -737,13 +737,13 @@ function openLesson(id){
 }
 
 /* ============ MOCK OLYMPIADS ============ */
-let questions=[],qIndex=0,qAnswers={},timerSec=0,timerInt=null;
+let questions=[],qIndex=0,qAnswers={},timerSec=0,timerInt=null,contestLabel='Mock Olympiad';
 function shuffleArr(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function startContest(n=5,diffs=null){
+function startContest(n=5,diffs=null,label='Mock Olympiad'){
   const pool=diffs?PROBLEMS.filter(p=>diffs.includes(p.diff)):PROBLEMS;
   questions=shuffleArr(pool).slice(0,n);
-  qIndex=0;qAnswers={};
-  timerSec=n>=20?7200:n>=15?5400:1200;
+  qIndex=0;qAnswers={};contestLabel=label;
+  timerSec=n>=25?9000:n>=20?7200:n>=15?5400:1200;
   clearInterval(timerInt);
   timerInt=setInterval(()=>{timerSec--;if(timerSec<=0){clearInterval(timerInt);submitContest()}renderTimer()},1000);
   go('contestView');renderContest();
@@ -752,7 +752,7 @@ function renderTimer(){let h=Math.floor(timerSec/3600),m=Math.floor(timerSec%360
 function renderContest(){
   renderTimer();
   const p=questions[qIndex];
-  document.getElementById('contestTitle').textContent=`Mock Olympiad \u00b7 ${questions.length} questions`;
+  document.getElementById('contestTitle').textContent=`${contestLabel} \u00b7 ${questions.length} questions`;
   document.getElementById('questionArea').innerHTML=`<div class="tag">${qIndex+1} / ${questions.length}</div><h2>${p.title}</h2><p class="question">${p.text}</p><input class="input" style="width:100%" placeholder="Your answer..." value="${qAnswers[p.id]||''}" oninput="qAnswers['${p.id}']=this.value">`;
   document.getElementById('qnav').innerHTML=questions.map((x,i)=>`<button class="qnum ${qAnswers[x.id]?'done':''} ${i===qIndex?'current':''}" onclick="qIndex=${i};renderContest()">${i+1}</button>`).join('');
 }
@@ -771,7 +771,7 @@ function submitContest(){
     saveData(u,d);
     refreshHeader();
   }
-  document.getElementById('modalContent').innerHTML=`<div class="hero"><div class="eyebrow">Contest complete</div><h1>${score} / ${questions.length}</h1><p>Your mock Olympiad has been recorded in your academy profile.</p></div><div style="margin-top:18px"><button class="btn gold" onclick="closeModal();go('dashboard')">Return to dashboard</button></div>`;
+  document.getElementById('modalContent').innerHTML=`<div class="hero"><div class="eyebrow">Contest complete</div><h1>${score} / ${questions.length}</h1><p>Your ${contestLabel.toLowerCase()} has been recorded in your academy profile.</p></div><div style="margin-top:18px"><button class="btn gold" onclick="closeModal();go('dashboard')">Return to dashboard</button></div>`;
   document.getElementById('modal').classList.add('show');
 }
 

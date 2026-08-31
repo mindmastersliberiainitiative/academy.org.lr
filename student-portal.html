@@ -231,6 +231,27 @@ select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,va
 }
 .solution.open{max-height:140px;opacity:1;margin-top:14px;padding:4px 0 4px 16px}
 
+/* ---------- coach console ---------- */
+.searchfield{max-width:380px;margin:18px 0 20px}
+.rankbadge{
+  min-width:22px;height:22px;padding:0 6px;border-radius:999px;border:1px solid var(--line-2);
+  flex:none;display:grid;place-items:center;font:800 10.5px var(--mono);color:var(--muted-2);
+}
+.pcard.top3 .rankbadge{background:var(--gold);color:#241701;border-color:transparent}
+.coachrow{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);font-size:12.5px;gap:14px}
+.coachrow:last-child{border-bottom:0}
+.coachrow span{color:var(--muted)}
+.coach-topics{margin-top:6px}
+.coachactions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.coachbtn{
+  border:1px solid var(--line-2);background:transparent;color:var(--muted);
+  padding:9px 14px;border-radius:999px;font:800 10px var(--mono);letter-spacing:.05em;
+  transition:all .25s var(--ease);
+}
+.coachbtn:hover{border-color:var(--gold);color:var(--gold-soft)}
+.coachbtn.danger:hover{border-color:var(--coral);color:var(--coral)}
+.emptynote{padding:34px 0;text-align:center;color:var(--muted)}
+
 /* ---------- back link ---------- */
 .backlink{
   display:inline-flex;align-items:center;gap:6px;color:var(--muted);
@@ -471,24 +492,47 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted-2);font
     <div class="card">
       <h3>Quick access</h3>
       <div class="quick">
+        <button class="qbtn" onclick="view('daily')">Today's five</button>
         <button class="qbtn" onclick="view('lab')">Problem lab</button>
+        <button class="qbtn" onclick="view('library')">Lesson library</button>
         <button class="qbtn" onclick="view('mock')">Mock test</button>
-        <button class="qbtn" onclick="coming('Resources')">Resources</button>
         <button class="qbtn" onclick="view('rankings')">Rankings</button>
         <button class="qbtn" onclick="view('certificates')">Certificates</button>
       </div>
       <div class="problem">
-        <div class="eyebrow">Problem preview · Intermediate</div>
-        <h3>If an integer leaves remainder 2 when divided by 5, what remainder can its square leave?</h3>
-        <button class="reveal-btn" onclick="document.getElementById('sol').classList.toggle('open')">Show solution</button>
-        <div id="sol" class="solution">Write n = 5k + 2. Then n² = 25k² + 20k + 4 = 5(5k² + 4k) + 4, so the remainder is <b style="color:var(--gold)">4</b>.</div>
+        <div class="eyebrow">Daily practice · <span id="dailyTeaser">0 / 5 done today</span></div>
+        <h3>A fresh set of 5 problems is chosen for you every day.</h3>
+        <button class="reveal-btn" onclick="view('daily')">Open today's five</button>
       </div>
     </div>
   </div>
   <div class="card" style="margin-top:14px">
     <h3>What we build next</h3>
-    <p class="muted">Coach and admin controls, lesson library, and cloud sync are still ahead. Problem Lab, Mock Olympiads, progress tracking, rankings and certificates are live below.</p>
+    <p class="muted">Cloud sync is still ahead. Problem Lab, Daily Five practice, Lesson library, Mock Olympiads, progress tracking, rankings, certificates and Coach &amp; admin controls are live below.</p>
   </div>
+</div></section>
+
+<section id="coachDash" class="view"><div class="wrap">
+  <div class="dashhead">
+    <div>
+      <div class="eyebrow">MMLI Olympiad Academy · Coach console</div>
+      <h1 id="coachName">Coach</h1>
+      <p class="muted">Manage students and review academy-wide training progress.</p>
+    </div>
+    <span class="badge">Coach &amp; admin</span>
+  </div>
+  <div class="stats">
+    <div class="stat"><small>Registered students</small><b id="coachStatStudents">0</b></div>
+    <div class="stat"><small>Avg. progress</small><b id="coachStatAvg">0%</b></div>
+    <div class="stat"><small>Problems solved (all)</small><b id="coachStatSolved">0</b></div>
+    <div class="stat"><small>Mock tests taken</small><b id="coachStatMocks">0</b></div>
+  </div>
+  <div class="field searchfield">
+    <label>Search students</label>
+    <input id="coachSearch" placeholder="Search by name, school or Academy ID" oninput="renderCoachRoster()">
+  </div>
+  <div class="chiprow" id="coachDivChips"></div>
+  <div class="problist" id="coachRoster"></div>
 </div></section>
 
 <section id="lab" class="view"><div class="wrap">
@@ -498,7 +542,27 @@ footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted-2);font
   <p class="muted" style="margin-top:6px">Answer each problem to earn points and unlock certificates. Answers are checked automatically.</p>
   <div class="chiprow" id="topicChips"></div>
   <div class="chiprow" id="diffChips"></div>
+  <p class="muted" id="labCount" style="font-size:12px;margin:0 0 10px"></p>
   <div class="problist" id="problist"></div>
+  <div class="coachactions" id="labPager" style="justify-content:space-between;align-items:center"></div>
+</div></section>
+
+<section id="daily" class="view"><div class="wrap">
+  <button class="backlink" onclick="view('dash')">Dashboard</button>
+  <div class="eyebrow">Daily practice</div>
+  <h1 class="dashhead" style="display:block;margin:10px 0 0">Today's five</h1>
+  <p class="muted" id="dailyDate" style="margin-top:6px"></p>
+  <p class="muted" id="dailyProgressLabel" style="font-size:12px;margin:10px 0 18px"></p>
+  <div class="problist" id="dailyList"></div>
+</div></section>
+
+<section id="library" class="view"><div class="wrap">
+  <button class="backlink" onclick="view('dash')">Dashboard</button>
+  <div class="eyebrow">Lesson library</div>
+  <h1 class="dashhead" style="display:block;margin:10px 0 0">Learn the technique, then practice it</h1>
+  <p class="muted" style="margin-top:6px">Short notes and worked examples for each topic in the Problem Lab.</p>
+  <div class="chiprow" id="libChips"></div>
+  <div class="problist" id="libList"></div>
 </div></section>
 
 <section id="mock" class="view"><div class="wrap">
@@ -593,7 +657,7 @@ const $=x=>document.getElementById(x);
 
 /* ============ PROBLEM BANK ============ */
 const DIFF_POINTS={Foundation:5,Intermediate:10,Advanced:15};
-const PROBLEMS=[
+const CURATED_PROBLEMS=[
  {id:'nt1',topic:'Number Theory',diff:'Foundation',q:'What is the remainder when 2^10 is divided by 7?',a:'2',sol:'2^10 = 1024 = 7·146 + 2, so the remainder is 2.'},
  {id:'nt2',topic:'Number Theory',diff:'Foundation',q:'Find the smallest positive integer that leaves remainder 1 when divided by both 4 and 5.',a:'21',sol:'lcm(4,5) = 20, so the smallest such integer is 20 + 1 = 21.'},
  {id:'nt3',topic:'Number Theory',diff:'Intermediate',q:'For any positive integer n, what is the remainder when n³ − n is divided by 6?',a:'0',sol:'n³ − n = (n−1)n(n+1), the product of three consecutive integers, which is always divisible by 6. Remainder 0.'},
@@ -618,28 +682,187 @@ const PROBLEMS=[
  {id:'cb4',topic:'Combinatorics',diff:'Intermediate',q:'5 distinct books are arranged on a shelf. In how many ways can this be done if two specific books must sit next to each other?',a:'48',sol:'Treat the pair as one unit: 4! arrangements × 2 orders within the pair = 48.'},
  {id:'cb5',topic:'Combinatorics',diff:'Advanced',q:'In how many ways can 6 people be seated around a circular table?',a:'120',sol:'Circular arrangements of n objects: (n−1)! = 5! = 120.'},
  {id:'cb6',topic:'Combinatorics',diff:'Advanced',q:'A bag has 5 red and 3 blue balls. In how many ways can you choose 4 balls so that at least 2 are red?',a:'65',sol:'Total C(8,4)=70. Subtract fewer-than-2-red cases: 0 red is impossible, 1 red = C(5,1)·C(3,3)=5. 70−5=65.'}
-];
+].map(p=>({...p,core:true}));
+
+/* ============ PROCEDURAL PRACTICE BANK (2000+ questions) ============ */
+function mulberry32(seed){
+  return function(){
+    seed|=0;seed=seed+0x6D2B79F5|0;
+    let t=Math.imul(seed^seed>>>15,1|seed);
+    t=t+Math.imul(t^t>>>7,61|t)^t;
+    return((t^t>>>14)>>>0)/4294967296;
+  };
+}
+function gcdG(a,b){while(b){[a,b]=[b,a%b]}return a}
+function lcmG(a,b){return a/gcdG(a,b)*b}
+function modpowG(base,exp,mod){let r=1;base%=mod;while(exp>0){if(exp&1)r=r*base%mod;exp>>=1;base=base*base%mod}return r}
+function divisorSumG(n){let s=0;for(let i=1;i<=n;i++)if(n%i===0)s+=i;return s}
+function nCrG(n,r){if(r<0||r>n)return 0;let num=1,den=1;for(let i=0;i<r;i++){num*=(n-i);den*=(i+1)}return Math.round(num/den)}
+function nPrG(n,r){if(r<0||r>n)return 0;let p=1;for(let i=0;i<r;i++)p*=(n-i);return p}
+function factG(n){let f=1;for(let i=2;i<=n;i++)f*=i;return f}
+function termG(n){return n>=0?('+ '+n):('\u2212 '+(-n))}
+function shuffleSeeded(arr,rng){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+  return a;
+}
+function buildGenerated(){
+  const rng=mulberry32(20260901);
+  const PER_CELL=165;
+  const out=[];
+  let seq=0;
+  function push(topic,diff,q,a,sol){out.push({id:'gen-'+(++seq),topic,diff,q,a:String(a),sol,core:false})}
+  function addCell(topic,diff,candidates,build){
+    shuffleSeeded(candidates,rng).slice(0,PER_CELL).forEach(c=>{const r=build(c);push(topic,diff,r.q,r.a,r.sol)});
+  }
+
+  // ---- Number Theory ----
+  {const cand=[];
+   for(let a=2;a<=12;a++)for(let n=4;n<=18;n++)for(let m=3;m<=13;m++)cand.push([a,n,m]);
+   addCell('Number Theory','Foundation',cand,([a,n,m])=>{
+     const r=modpowG(a,n,m);
+     return {q:`What is the remainder when ${a}^${n} is divided by ${m}?`,a:r,
+       sol:`Using modular exponentiation, ${a}^${n} mod ${m} = ${r}.`};
+   });}
+  {const cand=[];
+   for(let N=20;N<=600;N++)cand.push(N);
+   addCell('Number Theory','Intermediate',cand,(N)=>{
+     const s=divisorSumG(N);
+     return {q:`Find the sum of all positive divisors of ${N}.`,a:s,
+       sol:`Adding every positive divisor of ${N} (including 1 and ${N} itself) gives ${s}.`};
+   });}
+  {const pairs=[[2,3],[2,5],[3,5],[2,7],[3,7],[5,7],[2,9],[3,8],[4,9],[5,9]];
+   const cand=[];
+   for(const [a,b] of pairs)for(let N=40;N<=500;N+=4)cand.push([a,b,N]);
+   addCell('Number Theory','Advanced',cand,([a,b,N])=>{
+     const below=N-1;
+     const da=Math.floor(below/a),db=Math.floor(below/b),dab=Math.floor(below/lcmG(a,b));
+     const ans=below-da-db+dab;
+     return {q:`How many positive integers less than ${N} are divisible by neither ${a} nor ${b}?`,a:ans,
+       sol:`By inclusion\u2013exclusion: ${below} \u2212 ${da} \u2212 ${db} + ${dab} = ${ans}.`};
+   });}
+
+  // ---- Algebra ----
+  {const cand=[];
+   for(let a=2;a<=9;a++)for(let c=1;c<a;c++)for(let x=-12;x<=15;x++)if(x!==0)cand.push([a,c,x]);
+   addCell('Algebra','Foundation',cand,([a,c,x])=>{
+     const p=7;
+     const q=p+(a-c)*x;
+     return {q:`Solve for x: ${a}x ${termG(p)} = ${c}x ${termG(q)}.`,a:x,
+       sol:`${a}x \u2212 ${c}x = ${q} \u2212 ${p}, so ${a-c}x = ${q-p}, giving x = ${x}.`};
+   });}
+  {const cand=[];
+   for(let s=2;s<=30;s++)for(let p=-15;p<=15;p++)cand.push([s,p]);
+   addCell('Algebra','Intermediate',cand,([s,p])=>{
+     const ans=s*s*s-3*p*s;
+     return {q:`If a and b are the roots of x\u00b2 \u2212 ${s}x + ${p} = 0, find a\u00b3 + b\u00b3.`,a:ans,
+       sol:`By Vieta's formulas a+b=${s}, ab=${p}. a\u00b3+b\u00b3 = (a+b)\u00b3 \u2212 3ab(a+b) = ${s}\u00b3 \u2212 3(${p})(${s}) = ${ans}.`};
+   });}
+  {const cand=[];
+   for(let k=2;k<=300;k++)cand.push(k);
+   addCell('Algebra','Advanced',cand,(k)=>{
+     const ans=k*k*k-3*k;
+     return {q:`If x + 1/x = ${k}, find x\u00b3 + 1/x\u00b3.`,a:ans,
+       sol:`x\u00b3+1/x\u00b3 = (x+1/x)\u00b3 \u2212 3(x+1/x) = ${k}\u00b3 \u2212 3(${k}) = ${ans}.`};
+   });}
+
+  // ---- Geometry ----
+  {const triples=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41],[12,35,37],[11,60,61]];
+   const cand=[];
+   for(const [a,b,h] of triples)for(let k=1;k<=25;k++)cand.push([a*k,b*k,h*k]);
+   addCell('Geometry','Foundation',cand,([a,b,h])=>{
+     return {q:`A right triangle has legs ${a} and ${b}. Find its hypotenuse.`,a:h,
+       sol:`By the Pythagorean theorem, \u221a(${a}\u00b2+${b}\u00b2) = ${h}.`};
+   });}
+  {const divisors180=[3,4,5,6,9,10,12,15,18,20,30,36,45,60,90,180];
+   const cand=[];
+   for(const s of divisors180)
+     for(let p=1;p<=s;p++)
+       for(let q=p;q<=s;q++){
+         const r=s-p-q;
+         if(r>=q)cand.push([p,q,r,s]);
+       }
+   addCell('Geometry','Intermediate',cand,([p,q,r,s])=>{
+     const largest=Math.round(180*r/s);
+     return {q:`The angles of a triangle are in ratio ${p}:${q}:${r}. Find the largest angle in degrees.`,a:largest,
+       sol:`The parts sum to ${s}, so each part is 180/${s} = ${180/s}\u00b0. The largest angle is ${r}\u00d7${180/s} = ${largest}\u00b0.`};
+   });}
+  {const cand=[];
+   for(let r=2;r<=250;r++)cand.push(r);
+   addCell('Geometry','Advanced',cand,(r)=>{
+     const area=2*r*r;
+     return {q:`A square is inscribed in a circle of radius ${r}. Find the area of the square.`,a:area,
+       sol:`The diagonal of the square equals the diameter, ${2*r}. Area = diagonal\u00b2/2 = ${(2*r)*(2*r)}/2 = ${area}.`};
+   });}
+
+  // ---- Combinatorics ----
+  {const cand=[];
+   for(let n=4;n<=26;n++)for(let k=1;k<n;k++)cand.push([n,k]);
+   addCell('Combinatorics','Foundation',cand,([n,k])=>{
+     const ans=nCrG(n,k);
+     return {q:`A committee of ${k} is chosen from ${n} people. How many committees are possible?`,a:ans,
+       sol:`C(${n},${k}) = ${ans}.`};
+   });}
+  {const cand=[];
+   for(let n=4;n<=16;n++)cand.push(['circ',n]);
+   for(let n=4;n<=16;n++)cand.push(['adj',n]);
+   for(let n=5;n<=30;n++)for(let r=2;r<=7;r++)if(r<n)cand.push(['npr',n,r]);
+   for(let n=4;n<=16;n++)cand.push(['first',n]);
+   addCell('Combinatorics','Intermediate',cand,(c)=>{
+     if(c[0]==='circ'){const n=c[1],ans=factG(n-1);
+       return {q:`In how many ways can ${n} people be seated around a circular table?`,a:ans,
+         sol:`Circular arrangements of n objects: (n\u22121)! = ${n-1}! = ${ans}.`};}
+     if(c[0]==='adj'){const n=c[1],ans=factG(n-1)*2;
+       return {q:`${n} distinct books are arranged on a shelf. In how many ways can this be done if two specific books must sit next to each other?`,a:ans,
+         sol:`Treat the pair as one unit: (${n}\u22121)! arrangements \u00d7 2 orders within the pair = ${ans}.`};}
+     if(c[0]==='npr'){const n=c[1],r=c[2],ans=nPrG(n,r);
+       return {q:`In how many ways can ${r} distinct positions be filled, in order, by choosing from ${n} distinct people?`,a:ans,
+         sol:`This is a permutation P(${n},${r}) = ${n}!/(${n}\u2212${r})! = ${ans}.`};}
+     const n=c[1],ans=factG(n-1);
+     return {q:`In how many ways can ${n} distinct people be arranged in a row if one specific person must be first?`,a:ans,
+       sol:`Fix that person first; the remaining ${n-1} people can be arranged in any order: (${n}\u22121)! = ${ans}.`};
+   });}
+  {const cand=[];
+   for(let rr=3;rr<=10;rr++)for(let b=2;b<=8;b++)for(let k=3;k<=8;k++)for(let m=1;m<=k;m++){
+     if(k<=rr+b&&m<=Math.min(k,rr))cand.push([rr,b,k,m]);
+   }
+   addCell('Combinatorics','Advanced',cand,([rr,b,k,m])=>{
+     let ans=0;
+     for(let i=m;i<=Math.min(k,rr);i++)ans+=nCrG(rr,i)*nCrG(b,k-i);
+     const total=nCrG(rr+b,k);
+     return {q:`A bag has ${rr} red and ${b} blue balls. In how many ways can you choose ${k} balls so that at least ${m} red ball${m===1?'':'s'} ${m===1?'is':'are'} chosen?`,a:ans,
+       sol:`Total C(${rr+b},${k})=${total}. Summing the valid red-count cases (at least ${m} red) gives ${ans}.`};
+   });}
+
+  return out;
+}
+const PROBLEMS=CURATED_PROBLEMS.concat(buildGenerated());
 const TOPICS=[...new Set(PROBLEMS.map(p=>p.topic))];
 const DIFFS=['Foundation','Intermediate','Advanced'];
 const TOTAL_POINTS=PROBLEMS.reduce((s,p)=>s+DIFF_POINTS[p.diff],0);
+const CORE_TOTAL_POINTS=CURATED_PROBLEMS.reduce((s,p)=>s+DIFF_POINTS[p.diff],0);
 
 /* ============ CERTIFICATES ============ */
 const CERTS=[
- {key:'foundation',title:'Foundation Certificate',body:'has completed every Foundation-level problem in the MMLI Problem Lab.',
-   test:d=>DIFFS[0]&&PROBLEMS.filter(p=>p.diff==='Foundation').every(p=>d.solved[p.id])},
- {key:'intermediate',title:'Intermediate Certificate',body:'has completed every Intermediate-level problem in the MMLI Problem Lab.',
-   test:d=>PROBLEMS.filter(p=>p.diff==='Intermediate').every(p=>d.solved[p.id])},
- {key:'advanced',title:'Advanced Problem Solver',body:'has completed every problem in the MMLI Problem Lab.',
-   test:d=>PROBLEMS.every(p=>d.solved[p.id])},
+ {key:'foundation',title:'Foundation Certificate',body:'has completed every core Foundation-level problem in the MMLI Problem Lab.',
+   test:d=>CURATED_PROBLEMS.filter(p=>p.diff==='Foundation').every(p=>d.solved[p.id])},
+ {key:'intermediate',title:'Intermediate Certificate',body:'has completed every core Intermediate-level problem in the MMLI Problem Lab.',
+   test:d=>CURATED_PROBLEMS.filter(p=>p.diff==='Intermediate').every(p=>d.solved[p.id])},
+ {key:'advanced',title:'Advanced Problem Solver',body:'has completed every core problem in the MMLI Problem Lab curriculum.',
+   test:d=>CURATED_PROBLEMS.every(p=>d.solved[p.id])},
  {key:'mockace',title:'Mock Olympiad Achiever',body:'scored 80% or higher on a full MMLI Mock Olympiad.',
-   test:d=>(d.mocks||[]).some(m=>m.score/m.total>=0.8)}
+   test:d=>(d.mocks||[]).some(m=>m.score/m.total>=0.8)},
+ {key:'century',title:'Century Solver',body:'has solved 100 or more problems across the MMLI practice bank.',
+   test:d=>Object.keys(d.solved||{}).length>=100},
+ {key:'streak',title:'Daily Practice Streak',body:'completed the Daily Five practice set for 7 different days.',
+   test:d=>(d.dailyDates||[]).length>=7}
 ];
 
 /* ============ DATA HELPERS ============ */
 function dataKey(u){return 'mmli_data_'+(u&&u.id?u.id:'')}
 function loadData(u){
-  try{return JSON.parse(localStorage.getItem(dataKey(u)))||{solved:{},mocks:[]}}
-  catch(e){return {solved:{},mocks:[]}}
+  try{return JSON.parse(localStorage.getItem(dataKey(u)))||{solved:{},mocks:[],dailyDates:[]}}
+  catch(e){return {solved:{},mocks:[],dailyDates:[]}}
 }
 function saveData(u,d){localStorage.setItem(dataKey(u),JSON.stringify(d))}
 function currentUser(){try{return JSON.parse(localStorage.getItem('mmli_user'))}catch(e){return null}}
@@ -648,6 +871,11 @@ function pointsFor(d){
   let pts=0;
   Object.keys(d.solved||{}).forEach(id=>{const p=PROBLEMS.find(x=>x.id===id);if(p)pts+=DIFF_POINTS[p.diff]});
   (d.mocks||[]).forEach(m=>pts+=m.score*8);
+  return pts;
+}
+function corePointsFor(d){
+  let pts=0;
+  CURATED_PROBLEMS.forEach(p=>{if(d.solved&&d.solved[p.id])pts+=DIFF_POINTS[p.diff]});
   return pts;
 }
 
@@ -660,6 +888,9 @@ function view(x){
   if(x==='rankings')renderRankings();
   if(x==='certificates')renderCertificates();
   if(x==='mock')renderMockStart();
+  if(x==='coachDash')renderCoachDash();
+  if(x==='daily')renderDaily();
+  if(x==='library')renderLibrary();
 }
 
 function msg(el,t,bad=false){
@@ -679,7 +910,7 @@ function refreshDash(){
   const u=currentUser();if(!u)return;
   const d=loadData(u);
   const solvedCount=Object.keys(d.solved||{}).length;
-  const pct=Math.round((pointsFor(d)/TOTAL_POINTS)*100);
+  const pct=Math.round((corePointsFor(d)/CORE_TOTAL_POINTS)*100);
   animateNumber($('statProgress'),pct,'%');
   $('statSolved').textContent=solvedCount+' / '+PROBLEMS.length;
   $('statMocks').textContent=(d.mocks||[]).length;
@@ -696,6 +927,9 @@ function refreshDash(){
     return `<div class="row"><b>${t}</b><span>${solved}/${probs.length} · ${label}</span></div>`;
   }).join('');
   $('topicRows').innerHTML=rows;
+  const dailyIds=getDailySet(u);
+  const dailyDone=dailyIds.filter(id=>d.solved[id]).length;
+  $('dailyTeaser').textContent=dailyDone+' / '+dailyIds.length+' done today';
 }
 function animateNumber(el,target,suffix){
   let cur=0;
@@ -705,15 +939,20 @@ function animateNumber(el,target,suffix){
 }
 
 /* ============ PROBLEM LAB ============ */
-let labTopic='All',labDiff='All';
+let labTopic='All',labDiff='All',labPage=0;
+const LAB_PAGE_SIZE=20;
 function renderLab(){
   const u=currentUser();if(!u)return;
   const d=loadData(u);
   $('topicChips').innerHTML=['All',...TOPICS].map(t=>
-    `<button class="chip ${t===labTopic?'active':''}" onclick="labTopic='${t}';renderLab()">${t}</button>`).join('');
+    `<button class="chip ${t===labTopic?'active':''}" onclick="labTopic='${t}';labPage=0;renderLab()">${t}</button>`).join('');
   $('diffChips').innerHTML=['All',...DIFFS].map(diff=>
-    `<button class="chip ${diff===labDiff?'active':''}" onclick="labDiff='${diff}';renderLab()">${diff}</button>`).join('');
-  const list=PROBLEMS.filter(p=>(labTopic==='All'||p.topic===labTopic)&&(labDiff==='All'||p.diff===labDiff));
+    `<button class="chip ${diff===labDiff?'active':''}" onclick="labDiff='${diff}';labPage=0;renderLab()">${diff}</button>`).join('');
+  const full=PROBLEMS.filter(p=>(labTopic==='All'||p.topic===labTopic)&&(labDiff==='All'||p.diff===labDiff));
+  const pages=Math.max(1,Math.ceil(full.length/LAB_PAGE_SIZE));
+  labPage=Math.min(labPage,pages-1);
+  const list=full.slice(labPage*LAB_PAGE_SIZE,labPage*LAB_PAGE_SIZE+LAB_PAGE_SIZE);
+  $('labCount').textContent=full.length+' problem'+(full.length===1?'':'s')+' match these filters';
   $('problist').innerHTML=list.map(p=>{
     const solved=!!d.solved[p.id];
     return `<div class="pcard ${solved?'solved':''}" id="card-${p.id}">
@@ -735,6 +974,10 @@ function renderLab(){
       </div>
     </div>`;
   }).join('')||'<p class="muted">No problems match these filters.</p>';
+  $('labPager').innerHTML=`
+    <button class="coachbtn" ${labPage<=0?'disabled':''} onclick="labPage--;renderLab()">← Previous</button>
+    <span class="muted" style="font:800 10.5px var(--mono);letter-spacing:.05em">Page ${labPage+1} of ${pages}</span>
+    <button class="coachbtn" ${labPage>=pages-1?'disabled':''} onclick="labPage++;renderLab()">Next →</button>`;
 }
 function toggleProblem(id){
   document.querySelectorAll('.pbody.open').forEach(b=>{if(b.id!=='body-'+id)b.classList.remove('open')});
@@ -763,6 +1006,160 @@ function checkProblem(id){
     fb.textContent='Not quite — try again.';
     fb.classList.add('show','bad');
   }
+}
+
+/* ============ DAILY FIVE PRACTICE ============ */
+function hashStr(s){let h=0;for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return h}
+function todayStr(){const dt=new Date();return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0')}
+function dailyKeyFor(u){return 'mmli_daily_'+(u&&u.id?u.id:'')}
+function getDailySet(u){
+  if(!u)return [];
+  const key=dailyKeyFor(u);
+  let rec=null;
+  try{rec=JSON.parse(localStorage.getItem(key))}catch(e){rec=null}
+  const today=todayStr();
+  if(rec&&rec.date===today&&Array.isArray(rec.ids)&&rec.ids.length)return rec.ids;
+  const d=loadData(u);
+  const unsolved=PROBLEMS.filter(p=>!(d.solved&&d.solved[p.id]));
+  const pool=unsolved.length>=5?unsolved:PROBLEMS;
+  const rng=mulberry32(hashStr(today+'|'+(u.id||'')));
+  const ids=shuffleSeeded(pool,rng).slice(0,5).map(p=>p.id);
+  localStorage.setItem(key,JSON.stringify({date:today,ids}));
+  if(!(d.dailyDates||[]).includes(today)){
+    d.dailyDates=[...(d.dailyDates||[]),today];
+    saveData(u,d);
+  }
+  return ids;
+}
+function renderDaily(){
+  const u=currentUser();if(!u)return;
+  const d=loadData(u);
+  const ids=getDailySet(u);
+  $('dailyDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const doneCount=ids.filter(id=>d.solved[id]).length;
+  $('dailyProgressLabel').textContent=doneCount+' / '+ids.length+' complete — a fresh five arrives tomorrow';
+  $('dailyList').innerHTML=ids.map(id=>{
+    const p=PROBLEMS.find(x=>x.id===id);
+    if(!p)return '';
+    const solved=!!d.solved[id];
+    return `<div class="pcard ${solved?'solved':''}" id="dailycard-${p.id}">
+      <div class="phead" onclick="toggleDailyProblem('${p.id}')">
+        <div>
+          <div class="ptags"><span class="ptag gold">${p.topic}</span><span class="ptag">${p.diff}</span><span class="ptag">${DIFF_POINTS[p.diff]} pts</span></div>
+          <div class="ptitle">${p.q}</div>
+        </div>
+        <div class="pcheck">✓</div>
+      </div>
+      <div class="pbody" id="dailybody-${p.id}">
+        <div class="pbody-inner">
+          <div class="pform">
+            <input id="dailyans-${p.id}" placeholder="Your answer" ${solved?'disabled':''} onkeydown="if(event.key==='Enter')checkDailyProblem('${p.id}')">
+            <button onclick="checkDailyProblem('${p.id}')" ${solved?'disabled':''}>${solved?'Solved':'Check answer'}</button>
+          </div>
+          <div class="pfeedback" id="dailyfb-${p.id}"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleDailyProblem(id){
+  document.querySelectorAll('#dailyList .pbody.open').forEach(b=>{if(b.id!=='dailybody-'+id)b.classList.remove('open')});
+  $('dailybody-'+id).classList.toggle('open');
+}
+function checkDailyProblem(id){
+  const u=currentUser();if(!u)return;
+  const p=PROBLEMS.find(x=>x.id===id);
+  const val=$('dailyans-'+id).value;
+  const fb=$('dailyfb-'+id);
+  fb.classList.remove('show','good','bad');
+  if(!val.trim())return;
+  const correct=normAns(val)===normAns(p.a);
+  if(correct){
+    const d=loadData(u);
+    d.solved[id]=true;
+    saveData(u,d);
+    fb.textContent='Correct! '+p.sol;
+    fb.classList.add('show','good');
+    $('dailycard-'+id).classList.add('solved');
+    $('dailyans-'+id).disabled=true;
+    document.querySelector('#dailycard-'+id+' .pform button').textContent='Solved';
+    document.querySelector('#dailycard-'+id+' .pform button').disabled=true;
+    checkNewCertificates(u);
+    const ids=getDailySet(u);
+    const doneCount=ids.filter(x=>d.solved[x]).length;
+    $('dailyProgressLabel').textContent=doneCount+' / '+ids.length+' complete — a fresh five arrives tomorrow';
+  }else{
+    fb.textContent='Not quite — try again.';
+    fb.classList.add('show','bad');
+  }
+}
+
+/* ============ LESSON LIBRARY ============ */
+const LESSONS=[
+ {id:'l-nt-1',topic:'Number Theory',level:'Foundation',title:'Modular arithmetic basics',
+  body:'When we divide an integer by m, the remainder is always between 0 and m−1. Two numbers are "congruent mod m" if they leave the same remainder when divided by m. This lets you replace huge numbers with small, manageable ones before doing arithmetic — especially useful for remainder and last-digit questions.',
+  example:{q:'What is the remainder when 3^7 is divided by 5?',sol:'Powers of 3 mod 5 cycle: 3,4,2,1,3,4,2,... (period 4). 7 mod 4 = 3, so the remainder matches the 3rd term in the cycle: 2.'}},
+ {id:'l-nt-2',topic:'Number Theory',level:'Intermediate',title:'Divisors and divisor sums',
+  body:'Every integer factors uniquely into primes: n = p₁^a₁ · p₂^a₂ · ... The number of positive divisors of n is (a₁+1)(a₂+1)..., and the sum of divisors is the product of (1+p+p²+...+p^a) for each prime factor. Spotting the prime factorization first turns a tedious listing problem into quick arithmetic.',
+  example:{q:'Find the sum of divisors of 60.',sol:'60 = 2²·3·5. Sum = (1+2+4)(1+3)(1+5) = 7·4·6 = 168.'}},
+ {id:'l-nt-3',topic:'Number Theory',level:'Advanced',title:'Inclusion–exclusion for counting',
+  body:'To count integers below N divisible by a or b, add the counts divisible by a and by b, then subtract those divisible by both (their lcm) — you\u2019ve double-counted them. To count integers divisible by neither, subtract that union from the total. This principle extends to three or more conditions with alternating signs.',
+  example:{q:'How many integers less than 50 are divisible by neither 2 nor 3?',sol:'Below 50 there are 49 integers. Divisible by 2: 24. By 3: 16. By 6: 8. Neither: 49 − 24 − 16 + 8 = 17.'}},
+ {id:'l-al-1',topic:'Algebra',level:'Foundation',title:'Solving linear equations',
+  body:'A linear equation in one variable can always be solved by collecting all the x-terms on one side and the constants on the other. Keep operations balanced: whatever you do to one side, do to the other. Double-check by substituting your answer back into the original equation.',
+  example:{q:'Solve 5x − 3 = 2x + 9.',sol:'5x − 2x = 9 + 3, so 3x = 12, giving x = 4.'}},
+ {id:'l-al-2',topic:'Algebra',level:'Intermediate',title:'Vieta\u2019s formulas',
+  body:'For a quadratic x² − sx + p = 0 with roots a and b: a+b = s and ab = p — no need to solve for the roots individually. Many competition problems ask for symmetric expressions like a²+b², a³+b³, or 1/a+1/b, all of which can be rewritten purely in terms of s and p.',
+  example:{q:'If a+b=6 and ab=8, find a²+b².',sol:'a²+b² = (a+b)² − 2ab = 36 − 16 = 20.'}},
+ {id:'l-al-3',topic:'Algebra',level:'Advanced',title:'Working with x + 1/x',
+  body:'If x + 1/x = k, then squaring gives x² + 1/x² = k² − 2, and a similar cubing trick gives x³ + 1/x³ = k³ − 3k. Recognizing this pattern turns what looks like a messy algebraic expansion into a one-line substitution.',
+  example:{q:'If x + 1/x = 4, find x² + 1/x².',sol:'x² + 1/x² = (x+1/x)² − 2 = 16 − 2 = 14.'}},
+ {id:'l-ge-1',topic:'Geometry',level:'Foundation',title:'The Pythagorean theorem',
+  body:'In a right triangle with legs a, b and hypotenuse c: a² + b² = c². Memorizing common integer triples — (3,4,5), (5,12,13), (8,15,17), (7,24,25) — and their multiples lets you spot the answer instantly instead of computing square roots.',
+  example:{q:'A right triangle has legs 9 and 12. Find the hypotenuse.',sol:'This is 3×(3,4,5): legs 9=3·3, 12=3·4, so the hypotenuse is 3·5 = 15.'}},
+ {id:'l-ge-2',topic:'Geometry',level:'Intermediate',title:'Angle ratios in triangles',
+  body:'The three angles of any triangle sum to 180°. If the angles are given as a ratio p:q:r, divide 180 by (p+q+r) to find the value of one part, then multiply by each ratio number to get each angle.',
+  example:{q:'A triangle has angles in ratio 3:4:5. Find the largest angle.',sol:'Parts sum to 12, each part = 15°. Largest angle = 5·15 = 75°.'}},
+ {id:'l-ge-3',topic:'Geometry',level:'Advanced',title:'Shapes inscribed in circles',
+  body:'When a square is inscribed in a circle, its diagonal equals the circle\u2019s diameter. Since a square\u2019s diagonal d relates to its side s by d = s√2, its area s² = d²/2. Recognizing these fixed relationships avoids setting up coordinate geometry for what is really a one-step formula.',
+  example:{q:'A square is inscribed in a circle of radius 4. Find its area.',sol:'Diagonal = 2·4 = 8. Area = 8²/2 = 32.'}},
+ {id:'l-cb-1',topic:'Combinatorics',level:'Foundation',title:'Factorials and arrangements',
+  body:'The number of ways to arrange n distinct objects in a row is n! = n·(n−1)·...·1. If you only need to choose and arrange r of the n objects (order matters), use the permutation P(n,r) = n!/(n−r)!.',
+  example:{q:'In how many ways can 5 students be arranged in a row?',sol:'5! = 120.'}},
+ {id:'l-cb-2',topic:'Combinatorics',level:'Intermediate',title:'Combinations and the "adjacent pair" trick',
+  body:'When order doesn\u2019t matter, use C(n,r) = n!/(r!(n−r)!) to choose r items from n. When two specific items must stay together in a line, glue them into a single block: arrange (n−1) units, then multiply by 2 for the two internal orders of the glued pair.',
+  example:{q:'4 books are on a shelf; two specific ones must sit together. How many arrangements?',sol:'Treat the pair as one block: (4−1)! = 6 arrangements, ×2 for internal order = 12.'}},
+ {id:'l-cb-3',topic:'Combinatorics',level:'Advanced',title:'Counting with "at least" conditions',
+  body:'"At least k" problems are usually easiest solved by adding up the individual cases (exactly k, exactly k+1, ...) using combinations for each, or by subtracting the complement (fewer than k) from the total. Choose whichever has fewer cases to compute.',
+  example:{q:'A bag has 4 red and 3 blue balls. In how many ways can you choose 3 balls with at least 2 red?',sol:'Exactly 2 red: C(4,2)C(3,1)=18. Exactly 3 red: C(4,3)=4. Total = 18+4 = 22.'}}
+];
+let libTopic='All';
+function renderLibrary(){
+  $('libChips').innerHTML=['All',...TOPICS].map(t=>
+    `<button class="chip ${t===libTopic?'active':''}" onclick="libTopic='${t}';renderLibrary()">${t}</button>`).join('');
+  const list=LESSONS.filter(l=>libTopic==='All'||l.topic===libTopic);
+  $('libList').innerHTML=list.map(l=>`
+    <div class="pcard" id="libcard-${l.id}">
+      <div class="phead" onclick="toggleLesson('${l.id}')">
+        <div>
+          <div class="ptags"><span class="ptag gold">${l.topic}</span><span class="ptag">${l.level}</span></div>
+          <div class="ptitle">${l.title}</div>
+        </div>
+        <div class="pcheck">▾</div>
+      </div>
+      <div class="pbody" id="libbody-${l.id}">
+        <div class="pbody-inner">
+          <p class="muted" style="line-height:1.65">${l.body}</p>
+          <div class="coachrow" style="border-top:1px solid var(--line);padding-top:12px;margin-top:6px"><b>Worked example</b></div>
+          <p style="margin:8px 0 4px;font-size:13px">${l.example.q}</p>
+          <p class="muted" style="font-size:12.5px;line-height:1.6">${l.example.sol}</p>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function toggleLesson(id){
+  document.querySelectorAll('#libList .pbody.open').forEach(b=>{if(b.id!=='libbody-'+id)b.classList.remove('open')});
+  $('libbody-'+id).classList.toggle('open');
 }
 
 /* ============ MOCK OLYMPIAD ============ */
@@ -838,9 +1235,10 @@ function finishMock(){
 }
 
 /* ============ RANKINGS ============ */
+function allUsers(){return JSON.parse(localStorage.getItem('mmli_users')||'[]')}
+function studentUsers(){return allUsers().filter(u=>!u.role||u.role==='Student')}
 function leaderboard(){
-  const users=JSON.parse(localStorage.getItem('mmli_users')||'[]');
-  return users.map(u=>({...u,points:pointsFor(loadData(u))})).sort((a,b)=>b.points-a.points);
+  return studentUsers().map(u=>({...u,points:pointsFor(loadData(u))})).sort((a,b)=>b.points-a.points);
 }
 function renderRankings(){
   const u=currentUser();
@@ -848,6 +1246,89 @@ function renderRankings(){
   $('lbBody').innerHTML=board.length?board.map((r,i)=>
     `<tr class="${u&&r.id===u.id?'me':''}"><td class="lbrank">#${i+1}</td><td>${r.name||'Student'}${u&&r.id===u.id?' (you)':''}</td><td>${r.division||'—'}</td><td>${r.points}</td></tr>`
   ).join(''):'<tr><td colspan="4" class="muted">No ranked students yet.</td></tr>';
+}
+
+/* ============ COACH & ADMIN CONSOLE ============ */
+let coachDivFilter='All';
+function coachStudentRows(){
+  const board=leaderboard();
+  return studentUsers().map(u=>{
+    const d=loadData(u);
+    const solved=Object.keys(d.solved||{}).length;
+    const mocks=(d.mocks||[]).length;
+    const pts=pointsFor(d);
+    const pct=Math.round((corePointsFor(d)/CORE_TOTAL_POINTS)*100);
+    const rank=board.findIndex(r=>r.id===u.id)+1;
+    return {u,d,solved,mocks,pts,pct,rank};
+  });
+}
+function renderCoachDash(){
+  const rows=coachStudentRows();
+  $('coachStatStudents').textContent=rows.length;
+  $('coachStatAvg').textContent=(rows.length?Math.round(rows.reduce((s,r)=>s+r.pct,0)/rows.length):0)+'%';
+  $('coachStatSolved').textContent=rows.reduce((s,r)=>s+r.solved,0);
+  $('coachStatMocks').textContent=rows.reduce((s,r)=>s+r.mocks,0);
+  const divs=['All',...new Set(studentUsers().map(u=>u.division).filter(Boolean))];
+  $('coachDivChips').innerHTML=divs.map(dv=>
+    `<button class="chip ${dv===coachDivFilter?'active':''}" onclick="coachDivFilter='${dv}';renderCoachRoster()">${dv}</button>`).join('');
+  renderCoachRoster();
+}
+function renderCoachRoster(){
+  const q=($('coachSearch').value||'').trim().toLowerCase();
+  let rows=coachStudentRows().sort((a,b)=>b.pts-a.pts);
+  if(coachDivFilter!=='All')rows=rows.filter(r=>r.u.division===coachDivFilter);
+  if(q)rows=rows.filter(r=>(r.u.name||'').toLowerCase().includes(q)||(r.u.school||'').toLowerCase().includes(q)||(r.u.id||'').toLowerCase().includes(q));
+  $('coachRoster').innerHTML=rows.length?rows.map(r=>{
+    const u=r.u;
+    const safeId=(u.id||'').replace(/'/g,"\\'");
+    return `<div class="pcard ${r.rank>=1&&r.rank<=3?'top3':''}" id="coach-card-${u.id}">
+      <div class="phead" onclick="toggleCoachStudent('${safeId}')">
+        <div>
+          <div class="ptags"><span class="ptag gold">${u.division||'—'}</span><span class="ptag">${u.school||'—'}</span><span class="ptag">${u.id||'—'}</span></div>
+          <div class="ptitle">${u.name||'Student'} — ${r.pts} pts · ${r.solved}/${PROBLEMS.length} solved · ${r.mocks} mock${r.mocks===1?'':'s'}</div>
+        </div>
+        <div class="rankbadge">${r.rank?'#'+r.rank:'—'}</div>
+      </div>
+      <div class="pbody" id="coach-body-${u.id}">
+        <div class="pbody-inner">
+          <div class="coachrow"><b>Training progress</b><span>${r.pct}%</span></div>
+          <div class="bar" style="margin:8px 0 16px"><i style="width:${Math.min(r.pct,100)}%"></i></div>
+          <div class="coach-topics">${TOPICS.map(t=>{
+            const probs=PROBLEMS.filter(p=>p.topic===t);
+            const solved=probs.filter(p=>r.d.solved&&r.d.solved[p.id]).length;
+            return `<div class="coachrow"><b>${t}</b><span>${solved}/${probs.length}</span></div>`;
+          }).join('')}</div>
+          <div class="coachrow"><b>Mock test history</b><span>${(r.d.mocks||[]).length} taken</span></div>
+          ${(r.d.mocks||[]).length?(r.d.mocks.slice().reverse().slice(0,5).map(m=>
+            `<div class="coachrow"><span>${new Date(m.date).toLocaleDateString()}</span><span>${m.score}/${m.total} · ${Math.round(m.score/m.total*100)}%</span></div>`).join('')):'<p class="muted">No mock tests taken yet.</p>'}
+          <div class="coachactions">
+            <button class="coachbtn" onclick="resetStudentProgress('${safeId}')">Reset progress</button>
+            <button class="coachbtn danger" onclick="removeStudent('${safeId}')">Remove student</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join(''):'<div class="emptynote">No students match this search or filter.</div>';
+}
+function toggleCoachStudent(id){
+  document.querySelectorAll('#coachRoster .pbody.open').forEach(b=>{if(b.id!=='coach-body-'+id)b.classList.remove('open')});
+  $('coach-body-'+id).classList.toggle('open');
+}
+function resetStudentProgress(id){
+  const u=studentUsers().find(x=>x.id===id);
+  if(!u)return;
+  if(!confirm('Reset all problem and mock test progress for '+(u.name||'this student')+'? This cannot be undone.'))return;
+  saveData(u,{solved:{},mocks:[],certs:[]});
+  renderCoachDash();
+}
+function removeStudent(id){
+  const u=studentUsers().find(x=>x.id===id);
+  if(!u)return;
+  if(!confirm('Remove '+(u.name||'this student')+' from the academy roster? This deletes their account and progress.'))return;
+  const remaining=allUsers().filter(x=>x.id!==id);
+  localStorage.setItem('mmli_users',JSON.stringify(remaining));
+  localStorage.removeItem(dataKey(u));
+  renderCoachDash();
 }
 
 /* ============ CERTIFICATES ============ */
@@ -897,13 +1378,18 @@ $('logout').onclick=()=>{
 };
 
 function openDash(u){
-  $('sn').textContent=(u.name||'Mathematical thinker');
-  $('sm').textContent=`${u.division||'Student'} · ${u.school||'Academy'} · ${u.id||'Academy account'}`;
   $('login').style.display='none';
   $('join').style.display='none';
   $('logout').style.display='inline-block';
-  view('dash');
   localStorage.setItem('mmli_user',JSON.stringify(u));
+  if(u.role==='Coach'){
+    $('coachName').textContent=(u.name||'Coach')+' — Coach console';
+    view('coachDash');
+    return;
+  }
+  $('sn').textContent=(u.name||'Mathematical thinker');
+  $('sm').textContent=`${u.division||'Student'} · ${u.school||'Academy'} · ${u.id||'Academy account'}`;
+  view('dash');
 }
 
 $('rf').onsubmit=e=>{

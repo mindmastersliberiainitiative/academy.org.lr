@@ -248,11 +248,11 @@ button{cursor:pointer}
 
 <section id="daily" class="view"><div class="hero"><div class="eyebrow">Daily practice</div><h1>Today's Five.</h1><p>Five carefully selected problems based on your current training profile.</p></div><div id="dailyList" class="problem-grid" style="margin-top:18px"></div></section>
 
-<section id="problems" class="view"><div class="card"><div class="eyebrow">Problem bank</div><h1>Problem Lab</h1><p style="color:var(--muted)">Train by branch, difficulty and Olympiad level.</p><div class="toolbar"><input class="input" id="search" placeholder="Search problems..." oninput="resetProbPage()"><select class="select" id="topicFilter" onchange="resetProbPage()"><option>All topics</option><option>Number Theory</option><option>Algebra</option><option>Geometry</option><option>Combinatorics</option></select><select class="select" id="diffFilter" onchange="resetProbPage()"><option>All levels</option><option>Foundation</option><option>Intermediate</option><option>Olympiad</option></select><select class="select" id="compFilter" onchange="resetProbPage()"><option>All competitions</option><option>IMO</option><option>PAMO</option><option>WMTC</option><option>AoPS</option></select></div><p style="color:var(--muted);font-size:12px;margin-top:8px">Practice problems written in the style and difficulty of these competitions for unlimited training — not reproductions of official papers.</p></div><div id="problemList" class="problem-grid" style="margin-top:18px"></div><div id="probPager" style="display:flex;justify-content:space-between;align-items:center;margin-top:18px"></div></section>
+<section id="problems" class="view"><div class="card"><div class="eyebrow">Problem bank</div><h1>Problem Lab</h1><p style="color:var(--muted)">Train by branch, difficulty and Olympiad level.</p><div class="toolbar"><input class="input" id="search" placeholder="Search problems..." oninput="resetProbPage()"><select class="select" id="topicFilter" onchange="resetProbPage()"><option>All topics</option><option>Number Theory</option><option>Algebra</option><option>Geometry</option><option>Combinatorics</option></select><select class="select" id="diffFilter" onchange="resetProbPage()"><option>All levels</option><option>Foundation</option><option>Intermediate</option><option>Olympiad</option></select></div></div><div id="problemList" class="problem-grid" style="margin-top:18px"></div><div id="probPager" style="display:flex;justify-content:space-between;align-items:center;margin-top:18px"></div></section>
 
 <section id="library" class="view"><div class="hero"><div class="eyebrow">Academy curriculum</div><h1>Lesson Library.</h1><p>Build theory, technique and proof-writing skill systematically.</p></div><div id="lessonList" class="lesson-grid" style="margin-top:18px"></div></section>
 
-<section id="contests" class="view"><div class="card"><div class="eyebrow">Competition center</div><h1>Mock Olympiads</h1><p style="color:var(--muted)">Timed rounds designed to simulate real mathematical competitions.</p></div><div class="problem-grid" style="margin-top:18px"><div class="problem"><span class="tag">ELITE</span><span class="difficulty">★★★★★</span><h3>Elite Championship #01</h3><p>5 sections · 25 questions · 2.5 hours · Olympiad-tier only</p><button class="btn gold" onclick="startContest(25,['Olympiad'],'Elite Championship')">Start elite round →</button></div><div class="problem"><span class="tag">SENIOR</span><span class="difficulty">★★★★</span><h3>Mock Olympiad #04</h3><p>4 sections · 20 questions · 2 hours</p><button class="btn" onclick="startContest(20,['Intermediate','Olympiad'],'Mock Olympiad')">Start mock →</button></div><div class="problem"><span class="tag">JUNIOR</span><span class="difficulty">★★★</span><h3>Junior Challenge #08</h3><p>3 sections · 15 questions · 90 minutes</p><button class="btn light" onclick="startContest(15,['Foundation','Intermediate'],'Junior Challenge')">Start challenge →</button></div><div class="problem"><span class="tag">TRAINING</span><span class="difficulty">★★</span><h3>Speed Round</h3><p>10 questions · 20 minutes</p><button class="btn light" onclick="startContest(10,null,'Speed Round')">Practice</button></div><div class="problem"><span class="tag" style="background:var(--gold);color:#3a2a00">IMO</span><span class="difficulty">★★★★</span><h3>IMO-Style Round</h3><p>15 questions · 90 minutes · Olympiad-tier, IMO style</p><button class="btn light" onclick="startContest(15,['Olympiad'],'IMO-Style Round',['IMO'])">Start round →</button></div><div class="problem"><span class="tag" style="background:var(--gold);color:#3a2a00">PAMO</span><span class="difficulty">★★★★</span><h3>PAMO-Style Round</h3><p>15 questions · 90 minutes · Olympiad-tier, PAMO style</p><button class="btn light" onclick="startContest(15,['Olympiad'],'PAMO-Style Round',['PAMO'])">Start round →</button></div><div class="problem"><span class="tag" style="background:var(--gold);color:#3a2a00">WMTC</span><span class="difficulty">★★★★</span><h3>WMTC-Style Round</h3><p>15 questions · 90 minutes · Olympiad-tier, WMTC style</p><button class="btn light" onclick="startContest(15,['Olympiad'],'WMTC-Style Round',['WMTC'])">Start round →</button></div><div class="problem"><span class="tag" style="background:var(--gold);color:#3a2a00">AoPS</span><span class="difficulty">★★★</span><h3>AoPS-Style Round</h3><p>15 questions · 60 minutes · All levels, AoPS training style</p><button class="btn light" onclick="startContest(15,null,'AoPS-Style Round',['AoPS'])">Start round →</button></div></div></section>
+<section id="contests" class="view"><div class="card"><div class="eyebrow">Competition center</div><h1>Mock Olympiads</h1><p style="color:var(--muted)">Timed rounds designed to simulate real mathematical competitions.</p></div><div class="problem-grid" style="margin-top:18px"><div class="problem"><span class="tag">ELITE</span><span class="difficulty">★★★★★</span><h3>Elite Championship #01</h3><p>5 sections · 25 questions · 2.5 hours · Olympiad-tier only</p><button class="btn gold" onclick="startContest(25,['Olympiad'],'Elite Championship')">Start elite round →</button></div><div class="problem"><span class="tag">SENIOR</span><span class="difficulty">★★★★</span><h3>Mock Olympiad #04</h3><p>4 sections · 20 questions · 2 hours</p><button class="btn" onclick="startContest(20,['Intermediate','Olympiad'],'Mock Olympiad')">Start mock →</button></div><div class="problem"><span class="tag">JUNIOR</span><span class="difficulty">★★★</span><h3>Junior Challenge #08</h3><p>3 sections · 15 questions · 90 minutes</p><button class="btn light" onclick="startContest(15,['Foundation','Intermediate'],'Junior Challenge')">Start challenge →</button></div><div class="problem"><span class="tag">TRAINING</span><span class="difficulty">★★</span><h3>Speed Round</h3><p>10 questions · 20 minutes</p><button class="btn light" onclick="startContest(10,null,'Speed Round')">Practice</button></div></div></section>
 
 <section id="contestView" class="view"><div class="contest"><div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="eyebrow">MMLI MOCK OLYMPIAD</div><h2 id="contestTitle">Mock Olympiad #04</h2></div><strong id="timer" style="font-size:22px;color:var(--red)">01:59:59</strong></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><div id="questionArea"></div><div style="display:flex;justify-content:space-between;margin-top:20px"><button class="btn light" onclick="prevQ()">← Previous</button><button class="btn" onclick="nextQ()">Next →</button></div></div><div class="card"><h3>Questions</h3><div id="qnav" class="qnav"></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><p style="font-size:12px;color:var(--muted)">✓ Answered &nbsp; ⚑ Review</p><button class="btn danger" style="width:100%" onclick="submitContest()">Submit contest</button></div></div></section>
 
@@ -330,32 +330,21 @@ const CURATED_PROBLEMS=[
  /* ---- Showcase set: original write-ups inspired by classic problems from IMO, PAMO, WMTC and AoPS.
     These are paraphrased/adapted into single-answer form for practice — not verbatim reproductions
     of any official paper — and each is tagged with the real event it draws on. ---- */
- {id:'sh-imo1',topic:'Number Theory',diff:'Olympiad',comp:'IMO',source:'Inspired by IMO 1988 · Problem 6',title:'The IMO 1988 Constant',text:'For positive integers a and b, whenever k=(a²+b²)/(ab+1) is an integer, a famous IMO result says k must be a perfect square. Take a=2, b=8 — compute k.',ans:'4',hint:'Just substitute: work out a²+b² and ab+1 separately, then divide.',sol:'a²+b² = 4+64 = 68 and ab+1 = 16+1 = 17. So k = 68/17 = 4, which is indeed 2² — matching the theorem.'},
- {id:'sh-imo2',topic:'Number Theory',diff:'Olympiad',comp:'IMO',source:'Inspired by IMO 1959 · Problem 1',title:"The First-Ever IMO Fraction",text:'The very first IMO problem (1959) asked to prove (21n+4)/(14n+3) is always in lowest terms. Confirm this for n=7 by computing gcd(21n+4, 14n+3).',ans:'1',hint:'Apply the Euclidean algorithm to 21n+4 and 14n+3 — the algebra works out the same way for every n.',sol:'For n=7: 21n+4=151 and 14n+3=101. The Euclidean algorithm gives gcd(151,101)=1, matching the general proof that the fraction never reduces.'},
- {id:'sh-imo3',topic:'Number Theory',diff:'Olympiad',comp:'IMO',source:'Inspired by IMO 1990 · Problem 3',title:'The Unique Self-Dividing Exponent',text:'IMO 1990 established that n=3 is the only integer greater than 1 for which n² divides 2^n+1. Verify this by computing (2^n+1) mod n² for n=3.',ans:'0',hint:'Just compute 2³+1 and 3² directly, then take the remainder.',sol:'2³+1 = 9 and 3² = 9, so (2^n+1) mod n² = 9 mod 9 = 0 — confirming divisibility exactly as the theorem states.'},
- {id:'sh-pamo1',topic:'Combinatorics',diff:'Olympiad',comp:'PAMO',source:'Inspired by PAMO 2000 · Problem 6',title:"The Directors' Vault",text:'A PAMO problem: a company has 5 directors. Any 3 of them together (a majority) must be able to open the vault, but no 2 alone (a minority) may. If one lock is assigned to block every possible pair of directors from opening it alone, what is the minimum number of locks needed?',ans:'10',hint:'Every pair of directors needs a lock that neither of them holds the key to — count how many such pairs exist among 5 people.',sol:'A lock is needed for each of the C(5,2)=10 possible "blocking pairs," and each director then holds keys to C(4,2)=6 of the 10 locks — the minimum is 10.'},
- {id:'sh-pamo2',topic:'Geometry',diff:'Olympiad',comp:'PAMO',source:'Inspired by classic PAMO tangent–secant geometry',title:'Tangent–Secant Power of a Point',text:'From an external point P, a tangent to a circle has length 12. A secant from P meets the circle first at distance 9 from P and then again farther out at distance d. Find d.',ans:'16',hint:'Power of a Point: the tangent length squared equals the product of the near and far secant distances.',sol:'By Power of a Point, 12² = 9·d, so 144 = 9d, giving d = 16.'},
- {id:'sh-pamo3',topic:'Number Theory',diff:'Olympiad',comp:'PAMO',source:'Inspired by PAMO-style number theory training problems',title:'Divisibility by 3 in a Quadratic',text:'How many positive integers n ≤ 2001 make n² + n + 1 divisible by 3?',ans:'667',hint:'Check n²+n+1 mod 3 for n ≡ 0, 1, 2 (mod 3) — only one residue class will work.',sol:'n²+n+1 is divisible by 3 exactly when n ≡ 1 (mod 3). Among 1..2001 those are 1, 4, ..., 1999 — 667 values.'},
- {id:'sh-wmtc1',topic:'Algebra',diff:'Olympiad',comp:'WMTC',source:'Inspired by 9th WMTC 2018 · Intermediate Relay',title:'Relay Chain',text:'In a WMTC-style relay, x+y=70 and y+z=60, so n=x+y+z can be written as 130−y. If y ranges over every integer from 0 to 60, how many distinct values can n take?',ans:'61',hint:'Since n=130−y is a one-to-one function of y, count how many integers y takes in its range.',sol:'y takes 61 integer values (0 through 60), and since n=130−y maps each to a distinct value, n also takes 61 distinct values.'},
- {id:'sh-wmtc2',topic:'Algebra',diff:'Olympiad',comp:'WMTC',source:'Inspired by WMTC Individual Round style',title:'Minimizing a Sum with AM–GM',text:'For x > 0, find the minimum value of x + 4/x.',ans:'4',hint:'Apply the AM–GM inequality to the two positive terms x and 4/x.',sol:'By AM–GM, x + 4/x ≥ 2√(x·4/x) = 2√4 = 4, with equality at x=2.'},
- {id:'sh-wmtc3',topic:'Algebra',diff:'Olympiad',comp:'WMTC',source:'Inspired by WMTC Team Round style',title:'Absolute Root Difference',text:'The equation x² − 2x − 15 = 0 has two real roots. Find the absolute difference between them.',ans:'8',hint:'Use (r1−r2)² = (r1+r2)² − 4r1r2 from the sum and product of the roots.',sol:'Sum=2, product=−15, so (r1−r2)² = 4 − 4(−15) = 64, giving |r1−r2| = 8.'},
- {id:'sh-aops1',topic:'Algebra',diff:'Olympiad',comp:'AoPS',source:'AoPS classic training problem',title:'Alternating Sum Pairing Trick',text:'Compute 1 − 2 + 3 − 4 + ... + 99 − 100.',ans:'-50',hint:'Pair up consecutive terms: (1−2), (3−4), and so on.',sol:'There are 50 pairs, each equal to −1, so the total is 50×(−1) = −50.'},
- {id:'sh-aops2',topic:'Algebra',diff:'Olympiad',comp:'AoPS',source:'AoPS classic telescoping-sum training problem',title:'Telescoping Fractions',text:'Compute 1/(1·2) + 1/(2·3) + 1/(3·4) + ... + 1/(9·10).',ans:'9/10',hint:'Each term 1/(k(k+1)) splits into 1/k − 1/(k+1); most terms then cancel.',sol:'The sum telescopes to 1 − 1/10 = 9/10.'},
- {id:'sh-aops3',topic:'Algebra',diff:'Olympiad',comp:'AoPS',source:'AoPS classic symmetric-functions training problem',title:'Symmetric Function Identity',text:'If a+b+c=6, ab+bc+ca=11 and abc=6, find a²+b²+c².',ans:'14',hint:'Square the sum a+b+c and subtract twice the pairwise-product sum.',sol:'a²+b²+c² = (a+b+c)² − 2(ab+bc+ca) = 36 − 22 = 14.'}
+ {id:'sh-imo1',topic:'Number Theory',diff:'Olympiad',title:'A Famous Perfect-Square Ratio',text:'For positive integers a and b, whenever k=(a²+b²)/(ab+1) works out to an integer, a celebrated theorem says k must always be a perfect square. Take a=2, b=8 — compute k.',ans:'4',hint:'Just substitute: work out a²+b² and ab+1 separately, then divide.',sol:'a²+b² = 4+64 = 68 and ab+1 = 16+1 = 17. So k = 68/17 = 4, which is indeed 2² — matching the theorem.'},
+ {id:'sh-imo2',topic:'Number Theory',diff:'Olympiad',title:'An Always-Reduced Fraction',text:'A classic result proves (21n+4)/(14n+3) is always in lowest terms, for every positive integer n. Confirm this for n=7 by computing gcd(21n+4, 14n+3).',ans:'1',hint:'Apply the Euclidean algorithm to 21n+4 and 14n+3 — the algebra works out the same way for every n.',sol:'For n=7: 21n+4=151 and 14n+3=101. The Euclidean algorithm gives gcd(151,101)=1, matching the general proof that the fraction never reduces.'},
+ {id:'sh-imo3',topic:'Number Theory',diff:'Olympiad',title:'The Unique Self-Dividing Exponent',text:'A classic result establishes that n=3 is the only integer greater than 1 for which n² divides 2^n+1. Verify this by computing (2^n+1) mod n² for n=3.',ans:'0',hint:'Just compute 2³+1 and 3² directly, then take the remainder.',sol:'2³+1 = 9 and 3² = 9, so (2^n+1) mod n² = 9 mod 9 = 0 — confirming divisibility exactly as the theorem states.'},
+ {id:'sh-pamo1',topic:'Combinatorics',diff:'Olympiad',title:"The Directors' Vault",text:'A company has 5 directors. Any 3 of them together (a majority) must be able to open the vault, but no 2 alone (a minority) may. If one lock is assigned to block every possible pair of directors from opening it alone, what is the minimum number of locks needed?',ans:'10',hint:'Every pair of directors needs a lock that neither of them holds the key to — count how many such pairs exist among 5 people.',sol:'A lock is needed for each of the C(5,2)=10 possible "blocking pairs," and each director then holds keys to C(4,2)=6 of the 10 locks — the minimum is 10.'},
+ {id:'sh-pamo2',topic:'Geometry',diff:'Olympiad',title:'Tangent–Secant Power of a Point',text:'From an external point P, a tangent to a circle has length 12. A secant from P meets the circle first at distance 9 from P and then again farther out at distance d. Find d.',ans:'16',hint:'Power of a Point: the tangent length squared equals the product of the near and far secant distances.',sol:'By Power of a Point, 12² = 9·d, so 144 = 9d, giving d = 16.'},
+ {id:'sh-pamo3',topic:'Number Theory',diff:'Olympiad',title:'Divisibility by 3 in a Quadratic',text:'How many positive integers n ≤ 2001 make n² + n + 1 divisible by 3?',ans:'667',hint:'Check n²+n+1 mod 3 for n ≡ 0, 1, 2 (mod 3) — only one residue class will work.',sol:'n²+n+1 is divisible by 3 exactly when n ≡ 1 (mod 3). Among 1..2001 those are 1, 4, ..., 1999 — 667 values.'},
+ {id:'sh-wmtc1',topic:'Algebra',diff:'Olympiad',title:'Relay Chain',text:'In a two-stage relay problem, x+y=70 and y+z=60, so n=x+y+z can be written as 130−y. If y ranges over every integer from 0 to 60, how many distinct values can n take?',ans:'61',hint:'Since n=130−y is a one-to-one function of y, count how many integers y takes in its range.',sol:'y takes 61 integer values (0 through 60), and since n=130−y maps each to a distinct value, n also takes 61 distinct values.'},
+ {id:'sh-wmtc2',topic:'Algebra',diff:'Olympiad',title:'Minimizing a Sum with AM–GM',text:'For x > 0, find the minimum value of x + 4/x.',ans:'4',hint:'Apply the AM–GM inequality to the two positive terms x and 4/x.',sol:'By AM–GM, x + 4/x ≥ 2√(x·4/x) = 2√4 = 4, with equality at x=2.'},
+ {id:'sh-wmtc3',topic:'Algebra',diff:'Olympiad',title:'Absolute Root Difference',text:'The equation x² − 2x − 15 = 0 has two real roots. Find the absolute difference between them.',ans:'8',hint:'Use (r1−r2)² = (r1+r2)² − 4r1r2 from the sum and product of the roots.',sol:'Sum=2, product=−15, so (r1−r2)² = 4 − 4(−15) = 64, giving |r1−r2| = 8.'},
+ {id:'sh-aops1',topic:'Algebra',diff:'Olympiad',title:'Alternating Sum Pairing Trick',text:'Compute 1 − 2 + 3 − 4 + ... + 99 − 100.',ans:'-50',hint:'Pair up consecutive terms: (1−2), (3−4), and so on.',sol:'There are 50 pairs, each equal to −1, so the total is 50×(−1) = −50.'},
+ {id:'sh-aops2',topic:'Algebra',diff:'Olympiad',title:'Telescoping Fractions',text:'Compute 1/(1·2) + 1/(2·3) + 1/(3·4) + ... + 1/(9·10).',ans:'9/10',hint:'Each term 1/(k(k+1)) splits into 1/k − 1/(k+1); most terms then cancel.',sol:'The sum telescopes to 1 − 1/10 = 9/10.'},
+ {id:'sh-aops3',topic:'Algebra',diff:'Olympiad',title:'Symmetric Function Identity',text:'If a+b+c=6, ab+bc+ca=11 and abc=6, find a²+b²+c².',ans:'14',hint:'Square the sum a+b+c and subtract twice the pairwise-product sum.',sol:'a²+b²+c² = (a+b+c)² − 2(ab+bc+ca) = 36 − 22 = 14.'}
 ].map(p=>({...p,core:true}));
 
-/* ============ COMPETITION STYLE TAGGING ============ */
-/* Every problem is labeled with the competition whose style/difficulty it matches:
-   IMO, PAMO, WMTC or AoPS. This is a training-style label, not a claim that the
-   problem is an official archived paper — see the showcase set above for the
-   handful of problems adapted directly from real, cited events. */
-const COMPS=['IMO','PAMO','WMTC','AoPS'];
-function compHash(s){let h=0;for(let i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))|0}return Math.abs(h)}
-function compFor(id,diff){
-  if(diff!=='Olympiad')return 'AoPS';
-  return COMPS[compHash(id)%COMPS.length];
-}
-/* ============ PROCEDURAL PRACTICE BANK (2000+ questions) ============ */
+/* ============ PROCEDURAL PRACTICE BANK (10,000+ questions) ============ */
 function mulberry32(seed){
   return function(){
     seed|=0;seed=seed+0x6D2B79F5|0;
@@ -368,7 +357,7 @@ function gcdG(a,b){while(b){[a,b]=[b,a%b]}return a}
 function lcmG(a,b){return a/gcdG(a,b)*b}
 function modpowG(base,exp,mod){let r=1;base%=mod;while(exp>0){if(exp&1)r=r*base%mod;exp>>=1;base=base*base%mod}return r}
 function divisorSumG(n){let s=0;for(let i=1;i<=n;i++)if(n%i===0)s+=i;return s}
-function nCrG(n,r){if(r<0||r>n)return 0;let num=1,den=1;for(let i=0;i<r;i++){num*=(n-i);den*=(i+1)}return Math.round(num/den)}
+function nCrG(n,r){if(r<0||r>n)return 0;r=Math.min(r,n-r);let c=1;for(let i=1;i<=r;i++){c=c*(n-r+i)/i}return Math.round(c)}
 function nPrG(n,r){if(r<0||r>n)return 0;let p=1;for(let i=0;i<r;i++)p*=(n-i);return p}
 function factG(n){let f=1;for(let i=2;i<=n;i++)f*=i;return f}
 function termG(n){return n>=0?('+ '+n):('\u2212 '+(-n))}
@@ -379,12 +368,12 @@ function shuffleSeeded(arr,rng){
 }
 function buildGenerated(){
   const rng=mulberry32(20260901);
-  const PER_CELL=165;
+  const PER_CELL=900;
   const out=[];
   let seq=0;
   function push(topic,diff,title,text,ans,sol,hint){out.push({id:'gen-'+(++seq),topic,diff,title,text,ans:String(ans),sol,hint,core:false})}
-  function addCell(topic,diff,candidates,build){
-    shuffleSeeded(candidates,rng).slice(0,PER_CELL).forEach(c=>{const r=build(c);push(topic,diff,r.title,r.text,r.ans,r.sol,r.hint)});
+  function addCell(topic,diff,candidates,build,want){
+    shuffleSeeded(candidates,rng).slice(0,want||PER_CELL).forEach(c=>{const r=build(c);push(topic,diff,r.title,r.text,r.ans,r.sol,r.hint)});
   }
 
   // ---- Number Theory ----
@@ -395,18 +384,18 @@ function buildGenerated(){
      return {title:`Remainder of ${a}^${n}`,text:`What is the remainder when ${a}^${n} is divided by ${m}?`,ans:r,
        sol:`Using modular exponentiation, ${a}^${n} mod ${m} = ${r}.`,
        hint:'Reduce the base modulo m first, then use repeated squaring (fast exponentiation).'};
-   });}
+   },1500);}
   {const cand=[];
-   for(let N=20;N<=600;N++)cand.push(N);
+   for(let N=20;N<=1600;N++)cand.push(N);
    addCell('Number Theory','Intermediate',cand,(N)=>{
      const s=divisorSumG(N);
      return {title:`Divisors of ${N}`,text:`Find the sum of all positive divisors of ${N}.`,ans:s,
        sol:`Adding every positive divisor of ${N} (including 1 and ${N} itself) gives ${s}.`,
        hint:'Find the prime factorization first, then use the divisor-sum formula.'};
-   });}
+   },1500);}
   {const pairs=[[2,3],[2,5],[3,5],[2,7],[3,7],[5,7],[2,9],[3,8],[4,9],[5,9]];
    const cand=[];
-   for(const [a,b] of pairs)for(let N=40;N<=500;N+=4)cand.push([a,b,N]);
+   for(const [a,b] of pairs)for(let N=40;N<=1240;N+=4)cand.push([a,b,N]);
    addCell('Number Theory','Olympiad',cand,([a,b,N])=>{
      const below=N-1;
      const da=Math.floor(below/a),db=Math.floor(below/b),dab=Math.floor(below/lcmG(a,b));
@@ -414,9 +403,7 @@ function buildGenerated(){
      return {title:`Integers Avoiding ${a} and ${b}`,text:`How many positive integers less than ${N} are divisible by neither ${a} nor ${b}?`,ans,
        sol:`By inclusion\u2013exclusion: ${below} \u2212 ${da} \u2212 ${db} + ${dab} = ${ans}.`,
        hint:'Use inclusion\u2013exclusion with the least common multiple of the two divisors.'};
-   });}
-
-  // ---- Algebra ----
+   },1500);}
   {const cand=[];
    for(let a=2;a<=9;a++)for(let c=1;c<a;c++)for(let x=-12;x<=15;x++)if(x!==0)cand.push([a,c,x]);
    addCell('Algebra','Foundation',cand,([a,c,x])=>{
@@ -425,33 +412,33 @@ function buildGenerated(){
      return {title:'Linear Equation',text:`Solve for x: ${a}x ${termG(p)} = ${c}x ${termG(q)}.`,ans:x,
        sol:`${a}x \u2212 ${c}x = ${q} \u2212 ${p}, so ${a-c}x = ${q-p}, giving x = ${x}.`,
        hint:'Collect the x-terms on one side and constants on the other.'};
-   });}
+   },900);}
   {const cand=[];
-   for(let s=2;s<=30;s++)for(let p=-15;p<=15;p++)cand.push([s,p]);
+   for(let s=2;s<=30;s++)for(let p=-16;p<=16;p++)cand.push([s,p]);
    addCell('Algebra','Intermediate',cand,([s,p])=>{
      const ans=s*s*s-3*p*s;
      return {title:"Vieta's Cubes",text:`If a and b are the roots of x\u00b2 \u2212 ${s}x + ${p} = 0, find a\u00b3 + b\u00b3.`,ans,
        sol:`By Vieta's formulas a+b=${s}, ab=${p}. a\u00b3+b\u00b3 = (a+b)\u00b3 \u2212 3ab(a+b) = ${s}\u00b3 \u2212 3(${p})(${s}) = ${ans}.`,
        hint:"Use a+b and ab from Vieta's formulas, then apply a\u00b3+b\u00b3=(a+b)\u00b3\u22123ab(a+b)."};
-   });}
+   },900);}
   {const cand=[];
-   for(let k=2;k<=300;k++)cand.push(k);
+   for(let k=2;k<=950;k++)cand.push(k);
    addCell('Algebra','Olympiad',cand,(k)=>{
      const ans=k*k*k-3*k;
      return {title:'Reciprocal Cube Identity',text:`If x + 1/x = ${k}, find x\u00b3 + 1/x\u00b3.`,ans,
        sol:`x\u00b3+1/x\u00b3 = (x+1/x)\u00b3 \u2212 3(x+1/x) = ${k}\u00b3 \u2212 3(${k}) = ${ans}.`,
        hint:'Cube (x+1/x) and simplify using the identity for x\u00b3+1/x\u00b3.'};
-   });}
+   },900);}
 
   // ---- Geometry ----
-  {const triples=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41],[12,35,37],[11,60,61]];
+  {const triples=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41],[12,35,37],[11,60,61],[28,45,53],[33,56,65],[16,63,65],[48,55,73],[13,84,85],[36,77,85],[39,80,89],[65,72,97]];
    const cand=[];
-   for(const [a,b,h] of triples)for(let k=1;k<=25;k++)cand.push([a*k,b*k,h*k]);
+   for(const [a,b,h] of triples)for(let k=1;k<=60;k++)cand.push([a*k,b*k,h*k]);
    addCell('Geometry','Foundation',cand,([a,b,h])=>{
      return {title:'Right Triangle Hypotenuse',text:`A right triangle has legs ${a} and ${b}. Find its hypotenuse.`,ans:h,
        sol:`By the Pythagorean theorem, \u221a(${a}\u00b2+${b}\u00b2) = ${h}.`,
        hint:'Check whether the legs form a scaled Pythagorean triple.'};
-   });}
+   },900);}
   {const divisors180=[3,4,5,6,9,10,12,15,18,20,30,36,45,60,90,180];
    const cand=[];
    for(const s of divisors180)
@@ -465,30 +452,30 @@ function buildGenerated(){
      return {title:'Triangle Angle Ratio',text:`The angles of a triangle are in ratio ${p}:${q}:${r}. Find the largest angle in degrees.`,ans:largest,
        sol:`The parts sum to ${s}, so each part is 180/${s} = ${180/s}\u00b0. The largest angle is ${r}\u00d7${180/s} = ${largest}\u00b0.`,
        hint:'The three angles sum to 180\u00b0; divide by the sum of the ratio parts.'};
-   });}
+   },1500);}
   {const cand=[];
-   for(let r=2;r<=250;r++)cand.push(r);
+   for(let r=2;r<=950;r++)cand.push(r);
    addCell('Geometry','Olympiad',cand,(r)=>{
      const area=2*r*r;
      return {title:'Square Inscribed in a Circle',text:`A square is inscribed in a circle of radius ${r}. Find the area of the square.`,ans:area,
        sol:`The diagonal of the square equals the diameter, ${2*r}. Area = diagonal\u00b2/2 = ${(2*r)*(2*r)}/2 = ${area}.`,
        hint:'The diagonal of the square equals the circle\u2019s diameter.'};
-   });}
+   },900);}
 
   // ---- Combinatorics ----
   {const cand=[];
-   for(let n=4;n<=26;n++)for(let k=1;k<n;k++)cand.push([n,k]);
+   for(let n=4;n<=50;n++)for(let k=1;k<n;k++)cand.push([n,k]);
    addCell('Combinatorics','Foundation',cand,([n,k])=>{
      const ans=nCrG(n,k);
      return {title:'Committee Selection',text:`A committee of ${k} is chosen from ${n} people. How many committees are possible?`,ans,
        sol:`C(${n},${k}) = ${ans}.`,
        hint:'Order doesn\u2019t matter here \u2014 use a combination, not a permutation.'};
-   });}
+   },1200);}
   {const cand=[];
-   for(let n=4;n<=16;n++)cand.push(['circ',n]);
-   for(let n=4;n<=16;n++)cand.push(['adj',n]);
-   for(let n=5;n<=30;n++)for(let r=2;r<=7;r++)if(r<n)cand.push(['npr',n,r]);
-   for(let n=4;n<=16;n++)cand.push(['first',n]);
+   for(let n=4;n<=19;n++)cand.push(['circ',n]);
+   for(let n=4;n<=19;n++)cand.push(['adj',n]);
+   for(let n=6;n<=80;n++)for(let r=2;r<=6;r++)if(r<n)cand.push(['npr',n,r]);
+   for(let n=4;n<=19;n++)cand.push(['first',n]);
    addCell('Combinatorics','Intermediate',cand,(c)=>{
      if(c[0]==='circ'){const n=c[1],ans=factG(n-1);
        return {title:'Circular Seating',text:`In how many ways can ${n} people be seated around a circular table?`,ans,
@@ -506,7 +493,7 @@ function buildGenerated(){
      return {title:'Fixed-Position Arrangement',text:`In how many ways can ${n} distinct people be arranged in a row if one specific person must be first?`,ans,
        sol:`Fix that person first; the remaining ${n-1} people can be arranged in any order: (${n}\u22121)! = ${ans}.`,
        hint:'Fix the required person\u2019s position, then arrange everyone else.'};
-   });}
+   },900);}
   {const cand=[];
    for(let rr=3;rr<=10;rr++)for(let b=2;b<=8;b++)for(let k=3;k<=8;k++)for(let m=1;m<=k;m++){
      if(k<=rr+b&&m<=Math.min(k,rr))cand.push([rr,b,k,m]);
@@ -518,13 +505,12 @@ function buildGenerated(){
      return {title:'Ball Selection with a Minimum',text:`A bag has ${rr} red and ${b} blue balls. In how many ways can you choose ${k} balls so that at least ${m} red ball${m===1?'':'s'} ${m===1?'is':'are'} chosen?`,ans,
        sol:`Total C(${rr+b},${k})=${total}. Summing the valid red-count cases (at least ${m} red) gives ${ans}.`,
        hint:'Sum the cases for exactly m, m+1, ... red balls, or subtract the complement from the total.'};
-   });}
+   },1500);}
 
   return out;
 }
-const PROBLEMS=CURATED_PROBLEMS.concat(buildGenerated()).map(p=>({...p,comp:p.comp||compFor(p.id,p.diff)}));
+const PROBLEMS=CURATED_PROBLEMS.concat(buildGenerated());
 const TOPICS=[...new Set(PROBLEMS.map(p=>p.topic))];
-const COMP_NAMES={IMO:'IMO',PAMO:'PAMO',WMTC:'WMTC',AoPS:'AoPS'};
 const DIFFS=['Foundation','Intermediate','Olympiad'];
 const LESSON_ICONS={'Number Theory':'\u{1F522}','Algebra':'\u03A3','Geometry':'\u25B3','Combinatorics':'\u265F'};
 
@@ -720,15 +706,14 @@ function refreshHeader(){
 function card(p,d){
   const done=!!(d&&d.solved&&d.solved[p.id]);
   const stars='\u2605'.repeat(p.diff==='Olympiad'?4:p.diff==='Intermediate'?3:2);
-  const compTag=p.comp?`<span class="tag" style="background:var(--gold);color:#3a2a00">${p.comp}</span>`:'';
-  return `<article class="problem"><span class="tag">${p.topic}</span>${compTag}<span class="difficulty">${stars}</span><h3>${p.title}</h3><p>${p.text}</p><div class="foot"><span class="tag">${p.diff}</span><button class="btn ${done?'light':''}" onclick="openProblem('${p.id}')">${done?'Review':'Solve \u2192'}</button></div></article>`;
+  return `<article class="problem"><span class="tag">${p.topic}</span><span class="difficulty">${stars}</span><h3>${p.title}</h3><p>${p.text}</p><div class="foot"><span class="tag">${p.diff}</span><button class="btn ${done?'light':''}" onclick="openProblem('${p.id}')">${done?'Review':'Solve \u2192'}</button></div></article>`;
 }
 function openProblem(id){
   const u=currentUser();if(!u)return;
   const d=loadData(u);
   const p=PROBLEMS.find(x=>x.id===id);
   const done=!!(d.solved&&d.solved[id]);
-  document.getElementById('modalContent').innerHTML=`<div class="eyebrow">${p.topic} \u00b7 ${p.diff}${p.comp?' \u00b7 '+p.comp+' style':''}</div><h1>${p.title}</h1>${p.source?`<p style="color:var(--muted);font-size:12px;margin-top:-8px">${p.source}</p>`:''}<p class="question">${p.text}</p><div id="answerBox"><input class="input" id="answer" placeholder="Enter your answer" style="width:100%" ${done?'disabled':''}><div style="display:flex;gap:8px;margin-top:10px"><button class="btn gold" onclick="submitAnswer('${p.id}')" ${done?'disabled':''}>Submit</button><button class="btn light" onclick="showHint('${p.id}')">Hint</button><button class="btn light" onclick="showSolution('${p.id}')">Solution</button></div></div><div id="feedback">${done?'<div class="notice" style="display:block;background:#eef7f3;color:#247452">You\u2019ve already solved this one. \u2713</div>':''}</div>`;
+  document.getElementById('modalContent').innerHTML=`<div class="eyebrow">${p.topic} \u00b7 ${p.diff}</div><h1>${p.title}</h1><p class="question">${p.text}</p><div id="answerBox"><input class="input" id="answer" placeholder="Enter your answer" style="width:100%" ${done?'disabled':''}><div style="display:flex;gap:8px;margin-top:10px"><button class="btn gold" onclick="submitAnswer('${p.id}')" ${done?'disabled':''}>Submit</button><button class="btn light" onclick="showHint('${p.id}')">Hint</button><button class="btn light" onclick="showSolution('${p.id}')">Solution</button></div></div><div id="feedback">${done?'<div class="notice" style="display:block;background:#eef7f3;color:#247452">You\u2019ve already solved this one. \u2713</div>':''}</div>`;
   document.getElementById('modal').classList.add('show');
 }
 function closeModal(){document.getElementById('modal').classList.remove('show')}
@@ -768,8 +753,8 @@ const PROB_PAGE=24;
 function renderProblems(){
   const u=currentUser();if(!u)return;
   const d=loadData(u);
-  let q=(document.getElementById('search').value||'').toLowerCase(),t=document.getElementById('topicFilter').value,diff=document.getElementById('diffFilter').value,comp=document.getElementById('compFilter').value;
-  let a=PROBLEMS.filter(p=>(!q||(p.title+' '+p.text).toLowerCase().includes(q))&&(t==='All topics'||p.topic===t)&&(diff==='All levels'||p.diff===diff)&&(comp==='All competitions'||p.comp===comp));
+  let q=(document.getElementById('search').value||'').toLowerCase(),t=document.getElementById('topicFilter').value,diff=document.getElementById('diffFilter').value;
+  let a=PROBLEMS.filter(p=>(!q||(p.title+' '+p.text).toLowerCase().includes(q))&&(t==='All topics'||p.topic===t)&&(diff==='All levels'||p.diff===diff));
   const pages=Math.max(1,Math.ceil(a.length/PROB_PAGE));
   probPage=Math.min(probPage,pages-1);
   const slice=a.slice(probPage*PROB_PAGE,probPage*PROB_PAGE+PROB_PAGE);
@@ -792,9 +777,8 @@ function openLesson(id){
 /* ============ MOCK OLYMPIADS ============ */
 let questions=[],qIndex=0,qAnswers={},timerSec=0,timerInt=null,contestLabel='Mock Olympiad';
 function shuffleArr(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function startContest(n=5,diffs=null,label='Mock Olympiad',comps=null){
-  let pool=diffs?PROBLEMS.filter(p=>diffs.includes(p.diff)):PROBLEMS;
-  if(comps)pool=pool.filter(p=>comps.includes(p.comp));
+function startContest(n=5,diffs=null,label='Mock Olympiad'){
+  const pool=diffs?PROBLEMS.filter(p=>diffs.includes(p.diff)):PROBLEMS;
   questions=shuffleArr(pool).slice(0,n);
   qIndex=0;qAnswers={};contestLabel=label;
   timerSec=n>=25?9000:n>=20?7200:n>=15?5400:1200;
